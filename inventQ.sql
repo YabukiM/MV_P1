@@ -7,7 +7,6 @@ CREATE TABLE Maquinas (
   Contratos VARCHAR(50) unique,
   Producto VARCHAR(50) NOT NULL,
   Descripcion VARCHAR(100),
-  SeriePC VARCHAR(50) NOT NULL,
   SeriePC VARCHAR(50) NOT NULL unique,
   Destino VARCHAR(50),
   Asignada VARCHAR(50),
@@ -37,3 +36,5 @@ create table empleado(
 );
 
 --sfadsfdfsa
+
+--tacla compras o algo que seaea de compras
