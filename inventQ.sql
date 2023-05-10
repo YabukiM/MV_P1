@@ -25,5 +25,5 @@ CREATE TABLE Tiendas (
 
 );
 
-
+--sfadsfdfsa
 --ALTER TABLE Maquinas ADD FOREIGN KEY (SeriePC) REFERENCES Tiendas(ID_Tienda);
