@@ -35,6 +35,23 @@ create table empleado(
 	foreign key (seriePC) references Maquinas(seriePC)
 );
 
+
+create table contratos (
+	producto_contrato varchar(30) primary key not null,
+	descripcion varchar(30),
+	serie varchar(30),
+	destino varchar(30),
+	comentarios varchar(30),
+	fecha_surtido date,
+	recibio varchar(30),
+	Folio_pedido int,
+	fecha_pedido  varchar(30),
+	SeriePC  VARCHAR(50), 
+	foreign key (seriePC) references Maquinas(seriePC)
+
+)
+
+
 --sfadsfdfsa
 
 --tacla compras o algo que seaea de compras
