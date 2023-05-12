@@ -12,6 +12,8 @@ namespace MV_P1.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class InventoryEntities : DbContext
     {
@@ -29,5 +31,72 @@ namespace MV_P1.Models
         public virtual DbSet<empleado> empleado { get; set; }
         public virtual DbSet<Maquinas> Maquinas { get; set; }
         public virtual DbSet<Tiendas> Tiendas { get; set; }
+    
+        public virtual int sp_agregarTiendas(string deptoTienda, Nullable<int> noTienda, string nombreTienda, string direccionTienda, string seriePC, Nullable<bool> activo)
+        {
+            var deptoTiendaParameter = deptoTienda != null ?
+                new ObjectParameter("DeptoTienda", deptoTienda) :
+                new ObjectParameter("DeptoTienda", typeof(string));
+    
+            var noTiendaParameter = noTienda.HasValue ?
+                new ObjectParameter("NoTienda", noTienda) :
+                new ObjectParameter("NoTienda", typeof(int));
+    
+            var nombreTiendaParameter = nombreTienda != null ?
+                new ObjectParameter("NombreTienda", nombreTienda) :
+                new ObjectParameter("NombreTienda", typeof(string));
+    
+            var direccionTiendaParameter = direccionTienda != null ?
+                new ObjectParameter("DireccionTienda", direccionTienda) :
+                new ObjectParameter("DireccionTienda", typeof(string));
+    
+            var seriePCParameter = seriePC != null ?
+                new ObjectParameter("SeriePC", seriePC) :
+                new ObjectParameter("SeriePC", typeof(string));
+    
+            var activoParameter = activo.HasValue ?
+                new ObjectParameter("activo", activo) :
+                new ObjectParameter("activo", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_agregarTiendas", deptoTiendaParameter, noTiendaParameter, nombreTiendaParameter, direccionTiendaParameter, seriePCParameter, activoParameter);
+        }
+    
+        public virtual int sp_editarTiendas(Nullable<int> iD_Tienda, string deptoTienda, Nullable<int> noTienda, string nombreTienda, string direccionTienda, string seriePC)
+        {
+            var iD_TiendaParameter = iD_Tienda.HasValue ?
+                new ObjectParameter("ID_Tienda", iD_Tienda) :
+                new ObjectParameter("ID_Tienda", typeof(int));
+    
+            var deptoTiendaParameter = deptoTienda != null ?
+                new ObjectParameter("DeptoTienda", deptoTienda) :
+                new ObjectParameter("DeptoTienda", typeof(string));
+    
+            var noTiendaParameter = noTienda.HasValue ?
+                new ObjectParameter("NoTienda", noTienda) :
+                new ObjectParameter("NoTienda", typeof(int));
+    
+            var nombreTiendaParameter = nombreTienda != null ?
+                new ObjectParameter("NombreTienda", nombreTienda) :
+                new ObjectParameter("NombreTienda", typeof(string));
+    
+            var direccionTiendaParameter = direccionTienda != null ?
+                new ObjectParameter("DireccionTienda", direccionTienda) :
+                new ObjectParameter("DireccionTienda", typeof(string));
+    
+            var seriePCParameter = seriePC != null ?
+                new ObjectParameter("SeriePC", seriePC) :
+                new ObjectParameter("SeriePC", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_editarTiendas", iD_TiendaParameter, deptoTiendaParameter, noTiendaParameter, nombreTiendaParameter, direccionTiendaParameter, seriePCParameter);
+        }
+    
+        public virtual int sp_eliminar_tiendas(Nullable<int> iD_Tienda)
+        {
+            var iD_TiendaParameter = iD_Tienda.HasValue ?
+                new ObjectParameter("ID_Tienda", iD_Tienda) :
+                new ObjectParameter("ID_Tienda", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_eliminar_tiendas", iD_TiendaParameter);
+        }
     }
 }

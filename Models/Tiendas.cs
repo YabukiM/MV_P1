@@ -20,6 +20,7 @@ namespace MV_P1.Models
         public string NombreTienda { get; set; }
         public string DireccionTienda { get; set; }
         public string SeriePC { get; set; }
+        public Nullable<bool> Activo { get; set; }
     
         public virtual Maquinas Maquinas { get; set; }
     }

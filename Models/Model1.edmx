@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="InventoryModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="InventoryModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="contratos">
           <Key>
             <PropertyRef Name="producto_contrato" />
@@ -19,6 +19,7 @@
           <Property Name="Folio_pedido" Type="int" />
           <Property Name="fecha_pedido" Type="varchar" MaxLength="30" />
           <Property Name="SeriePC" Type="varchar" MaxLength="50" />
+          <Property Name="Activo" Type="bit" />
         </EntityType>
         <EntityType Name="empleado">
           <Key>
@@ -29,6 +30,7 @@
           <Property Name="seriePC" Type="varchar" MaxLength="50" />
           <Property Name="puesto" Type="varchar" MaxLength="30" />
           <Property Name="cartacustiodia" Type="int" Nullable="false" />
+          <Property Name="Activo" Type="bit" />
         </EntityType>
         <EntityType Name="Maquinas">
           <Key>
@@ -44,6 +46,7 @@
           <Property Name="Estatuss" Type="varchar" MaxLength="50" />
           <Property Name="NombreUsuarioPuesto" Type="varchar" MaxLength="50" />
           <Property Name="NoCartaCustodia" Type="varchar" MaxLength="50" />
+          <Property Name="Activo" Type="bit" />
         </EntityType>
         <EntityType Name="Tiendas">
           <Key>
@@ -55,6 +58,7 @@
           <Property Name="NombreTienda" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="DireccionTienda" Type="varchar" MaxLength="100" />
           <Property Name="SeriePC" Type="varchar" MaxLength="50" />
+          <Property Name="Activo" Type="bit" />
         </EntityType>
         <Association Name="FK__contratos__Serie__2E1BDC42">
           <End Role="Maquinas" Type="Self.Maquinas" Multiplicity="0..1" />
@@ -92,6 +96,25 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="sp_agregarTiendas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="DeptoTienda" Type="varchar" Mode="In" />
+          <Parameter Name="NoTienda" Type="int" Mode="In" />
+          <Parameter Name="NombreTienda" Type="varchar" Mode="In" />
+          <Parameter Name="DireccionTienda" Type="varchar" Mode="In" />
+          <Parameter Name="SeriePC" Type="varchar" Mode="In" />
+          <Parameter Name="activo" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="sp_editarTiendas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID_Tienda" Type="int" Mode="In" />
+          <Parameter Name="DeptoTienda" Type="varchar" Mode="In" />
+          <Parameter Name="NoTienda" Type="int" Mode="In" />
+          <Parameter Name="NombreTienda" Type="varchar" Mode="In" />
+          <Parameter Name="DireccionTienda" Type="varchar" Mode="In" />
+          <Parameter Name="SeriePC" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_eliminar_tiendas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID_Tienda" Type="int" Mode="In" />
+        </Function>
         <EntityContainer Name="InventoryModelStoreContainer">
           <EntitySet Name="contratos" EntityType="Self.contratos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="empleado" EntityType="Self.empleado" Schema="dbo" store:Type="Tables" />
@@ -110,8 +133,7 @@
             <End Role="Tiendas" EntitySet="Tiendas" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="InventoryModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -130,6 +152,7 @@
           <Property Name="fecha_pedido" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="SeriePC" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Maquinas" Relationship="Self.FK__contratos__Serie__2E1BDC42" FromRole="contratos" ToRole="Maquinas" />
+          <Property Name="Activo" Type="Boolean" />
         </EntityType>
         <EntityType Name="empleado">
           <Key>
@@ -141,6 +164,7 @@
           <Property Name="puesto" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="cartacustiodia" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Maquinas" Relationship="Self.FK__empleado__serieP__2B3F6F97" FromRole="empleado" ToRole="Maquinas" />
+          <Property Name="Activo" Type="Boolean" />
         </EntityType>
         <EntityType Name="Maquinas">
           <Key>
@@ -159,6 +183,7 @@
           <NavigationProperty Name="contratos1" Relationship="Self.FK__contratos__Serie__2E1BDC42" FromRole="Maquinas" ToRole="contratos" />
           <NavigationProperty Name="empleado" Relationship="Self.FK__empleado__serieP__2B3F6F97" FromRole="Maquinas" ToRole="empleado" />
           <NavigationProperty Name="Tiendas" Relationship="Self.FK__Tiendas__SeriePC__276EDEB3" FromRole="Maquinas" ToRole="Tiendas" />
+          <Property Name="Activo" Type="Boolean" />
         </EntityType>
         <EntityType Name="Tiendas">
           <Key>
@@ -171,6 +196,7 @@
           <Property Name="DireccionTienda" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="SeriePC" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Maquinas" Relationship="Self.FK__Tiendas__SeriePC__276EDEB3" FromRole="Tiendas" ToRole="Maquinas" />
+          <Property Name="Activo" Type="Boolean" />
         </EntityType>
         <Association Name="FK__contratos__Serie__2E1BDC42">
           <End Role="Maquinas" Type="Self.Maquinas" Multiplicity="0..1" />
@@ -225,6 +251,25 @@
             <End Role="Maquinas" EntitySet="Maquinas" />
             <End Role="Tiendas" EntitySet="Tiendas" />
           </AssociationSet>
+          <FunctionImport Name="sp_agregarTiendas">
+            <Parameter Name="DeptoTienda" Mode="In" Type="String" />
+            <Parameter Name="NoTienda" Mode="In" Type="Int32" />
+            <Parameter Name="NombreTienda" Mode="In" Type="String" />
+            <Parameter Name="DireccionTienda" Mode="In" Type="String" />
+            <Parameter Name="SeriePC" Mode="In" Type="String" />
+            <Parameter Name="activo" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="sp_editarTiendas">
+            <Parameter Name="ID_Tienda" Mode="In" Type="Int32" />
+            <Parameter Name="DeptoTienda" Mode="In" Type="String" />
+            <Parameter Name="NoTienda" Mode="In" Type="Int32" />
+            <Parameter Name="NombreTienda" Mode="In" Type="String" />
+            <Parameter Name="DireccionTienda" Mode="In" Type="String" />
+            <Parameter Name="SeriePC" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_eliminar_tiendas">
+            <Parameter Name="ID_Tienda" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
@@ -235,6 +280,7 @@
           <EntitySetMapping Name="contratos">
             <EntityTypeMapping TypeName="InventoryModel.contratos">
               <MappingFragment StoreEntitySet="contratos">
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
                 <ScalarProperty Name="producto_contrato" ColumnName="producto_contrato" />
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
                 <ScalarProperty Name="serie" ColumnName="serie" />
@@ -251,6 +297,7 @@
           <EntitySetMapping Name="empleado">
             <EntityTypeMapping TypeName="InventoryModel.empleado">
               <MappingFragment StoreEntitySet="empleado">
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
                 <ScalarProperty Name="No_emp" ColumnName="No_emp" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="seriePC" ColumnName="seriePC" />
@@ -262,6 +309,7 @@
           <EntitySetMapping Name="Maquinas">
             <EntityTypeMapping TypeName="InventoryModel.Maquinas">
               <MappingFragment StoreEntitySet="Maquinas">
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
                 <ScalarProperty Name="Conteo" ColumnName="Conteo" />
                 <ScalarProperty Name="Contratos" ColumnName="Contratos" />
                 <ScalarProperty Name="Producto" ColumnName="Producto" />
@@ -278,6 +326,7 @@
           <EntitySetMapping Name="Tiendas">
             <EntityTypeMapping TypeName="InventoryModel.Tiendas">
               <MappingFragment StoreEntitySet="Tiendas">
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
                 <ScalarProperty Name="ID_Tienda" ColumnName="ID_Tienda" />
                 <ScalarProperty Name="DeptoTienda" ColumnName="DeptoTienda" />
                 <ScalarProperty Name="NoTienda" ColumnName="NoTienda" />
@@ -287,6 +336,9 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_agregarTiendas" FunctionName="InventoryModel.Store.sp_agregarTiendas" />
+          <FunctionImportMapping FunctionImportName="sp_editarTiendas" FunctionName="InventoryModel.Store.sp_editarTiendas" />
+          <FunctionImportMapping FunctionImportName="sp_eliminar_tiendas" FunctionName="InventoryModel.Store.sp_eliminar_tiendas" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

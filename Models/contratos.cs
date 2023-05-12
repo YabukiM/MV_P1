@@ -24,6 +24,7 @@ namespace MV_P1.Models
         public Nullable<int> Folio_pedido { get; set; }
         public string fecha_pedido { get; set; }
         public string SeriePC { get; set; }
+        public Nullable<bool> Activo { get; set; }
     
         public virtual Maquinas Maquinas { get; set; }
     }

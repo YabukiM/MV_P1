@@ -15,6 +15,7 @@ CREATE TABLE Maquinas (
   NoCartaCustodia VARCHAR(50),
   PRIMARY KEY (SeriePC)
 );
+ALTER TABLE Maquinas ADD Activo BIT
 
 CREATE TABLE Tiendas (
   ID_Tienda int primary key identity (1,1),
@@ -25,6 +26,8 @@ CREATE TABLE Tiendas (
   SeriePC varchar(50), 
   foreign key (SeriePC)references Maquinas(SeriePC)
 );
+ALTER TABLE Tiendas ADD Activo BIT
+
 
 create table empleado(
     No_emp int primary key identity (1,1),
@@ -35,6 +38,7 @@ create table empleado(
 	foreign key (seriePC) references Maquinas(seriePC)
 );
 
+ALTER TABLE empleado ADD Activo BIT
 
 create table contratos (
 	producto_contrato varchar(30) primary key not null,
@@ -50,6 +54,7 @@ create table contratos (
 	foreign key (seriePC) references Maquinas(seriePC)
 
 )
+ALTER TABLE contratos ADD Activo BIT
 
 
 --sfadsfdfsa

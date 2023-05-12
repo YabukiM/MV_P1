@@ -32,6 +32,7 @@ namespace MV_P1.Models
         public string Estatuss { get; set; }
         public string NombreUsuarioPuesto { get; set; }
         public string NoCartaCustodia { get; set; }
+        public Nullable<bool> Activo { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<contratos> contratos1 { get; set; }
