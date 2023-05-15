@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "DatosMaquinas";
+}
+
+<h2>DatosMaquinas</h2>
+
+
+<a href="~/Tiendas/ForumularioTiendas" type="button" class="btn btn-primary">Nueva Tienda</a>
+
+
+<table class="table table-hover">
+    <tr>
+        <th>Contratos</th>
+        <th>Producto</th>
+        <th>SeriePC</th>
+        <th>Destino</th>
+        <th>Asignada</th>
+        <th>Estatus</th>
+        <th>NombreUsuarioPuesto</th>
+        <th>NoCartaCustodia</th>
+
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Contratos</td>
+            <td>@item.Producto</td>
+            <td>@item.SeriePC</td>
+            <td>@item.Destino</td>
+            <td>@item.Asignada</td>
+            <td>@item.Estatus</td>
+            <td>@item.NombreUsuarioPuesto</td>
+            <td>@item.NoCartaCustodia</td>
+
+            <td><a href="~/Maquinas/ForumularioMaquinas?SeriePC=@item.SeriePC" class="btn btn-info">Editar</a></td>
+            <td><a href="~/Maquinas/Eliminar?SeriePC=@item.SeriePC" class="btn btn-warning">Baja</a></td>
+        </tr>
+    }
+</table>

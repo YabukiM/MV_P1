@@ -16,7 +16,7 @@ namespace MV_P1.Models
     {
         public int ID_Tienda { get; set; }
         public string DeptoTienda { get; set; }
-        public int NoTienda { get; set; }
+        public Nullable<int> NoTienda { get; set; }
         public string NombreTienda { get; set; }
         public string DireccionTienda { get; set; }
         public string SeriePC { get; set; }

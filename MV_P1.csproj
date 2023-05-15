@@ -130,6 +130,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MaquinasController.cs" />
     <Compile Include="Controllers\TESTController.cs" />
     <Compile Include="Controllers\TiendasController.cs" />
     <Compile Include="Global.asax.cs">
@@ -175,8 +176,8 @@
     <Content Include="Content\Site.css" />
     <Content Include="Models\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Model1.Context.cs</LastGenOutput>
       <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Models\Model1.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -193,6 +194,7 @@
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\guardarMaquina.js" />
     <Content Include="Scripts\guardarTienda.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -2274,6 +2276,8 @@
     <Content Include="Template\plugins\toastr\toastr.js.map" />
     <Content Include="Views\Tiendas\DatosTiendas.cshtml" />
     <Content Include="Views\Tiendas\ForumularioTiendas.cshtml" />
+    <Content Include="Views\Maquinas\DatosMaquinas.cshtml" />
+    <Content Include="Views\Maquinas\FormularioMaquinas.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

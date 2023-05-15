@@ -1,0 +1,129 @@
+﻿
+@{
+    ViewBag.Title = "FormularioMaquinas";
+}
+
+<h2>FormularioMaquinas</h2>
+
+<script>
+    var urlGuardarMaquina = '@Url.Action("guardarMaquina", "Maquina")';
+</script>
+
+<script src="~/Scripts/guardarMaquina.js"></script>
+
+
+
+<div class="row">
+    <div class="col-md-3">
+        <label>Contratos</label>
+        @if (ViewBag.Maquinas != null)
+        {
+            <input type="text" id="Contratos" name="Contratos" class="form-control" value="@ViewBag.Maquinas.Contratos" />
+        }
+        else
+        {
+            <input type="text" id="Contratos" name="Contratos" class="form-control" />
+        }
+    </div>
+    <div class="col-md-3">
+        <label>Producto</label>
+        @if (ViewBag.Maquinas != null)
+        {
+            <input type="text" id="Producto" name="Producto" class="form-control" value="@ViewBag.Maquinas.Producto" />
+        }
+        else
+        {
+            <input type="text" id="Producto" name="Producto" class="form-control" />
+        }
+    </div>
+
+    <div class="col-md-3">
+        <label>Descripcion</label>
+        @if (ViewBag.Maquinas != null)
+        {
+            <input type="tel" id="Descripcion" name="Descripcion" class="form-control" value="@ViewBag.Maquinas.Descripcion" />
+        }
+        else
+        {
+            <input type="tel" id="Descripcion" name="Descripcion" class="form-control" />
+        }
+    </div>
+    <div class="col-md-3">
+        <label>SeriePC</label>
+        @if (ViewBag.Maquinas != null)
+        {
+            <input type="text" id="SeriePC" name="SeriePC" class="form-control" value="@ViewBag.Maquinas.SeriePC" />
+        }
+        else
+        {
+            <input type="text" id="SeriePC" name="SeriePC" class="form-control" />
+        }
+    </div>
+
+    <div class="col-md-3">
+        <label>Asignada</label>
+        @if (ViewBag.Maquinas != null)
+        {
+            <input type="text" id="Asignada" name="Asignada" class="form-control" value="@ViewBag.Maquinas.Asignada" />
+        }
+        else
+        {
+            <input type="text" id="Asignada" name="Asignada" class="form-control" />
+        }
+    </div>
+    <div class="col-md-3">
+        <label>Estatuss</label>
+        @if (ViewBag.Maquinas != null)
+        {
+            <input type="text" id="Estatuss" name="Estatuss" class="form-control" value="@ViewBag.Maquinas.Estatuss" />
+        }
+        else
+        {
+            <input type="text" id="Estatuss" name="Estatuss" class="form-control" />
+        }
+    </div>
+
+    <div class="col-md-3">
+        <label>NombreUsuarioPuesto</label>
+        @if (ViewBag.Maquinas != null)
+        {
+            <input type="text" id="NombreUsuarioPuesto" name="NombreUsuarioPuesto" class="form-control" value="@ViewBag.Maquinas.NombreUsuarioPuesto" />
+        }
+        else
+        {
+            <input type="text" id="NombreUsuarioPuesto" name="NombreUsuarioPuesto" class="form-control" />
+        }
+    </div>
+    <div class="col-md-3">
+        <label>NombreUsuarioPuesto</label>
+        @if (ViewBag.Maquinas != null)
+        {
+            <input type="text" id="NombreUsuarioPuesto" name="NombreUsuarioPuesto" class="form-control" value="@ViewBag.Maquinas.NombreUsuarioPuesto" />
+        }
+        else
+        {
+            <input type="text" id="NombreUsuarioPuesto" name="NombreUsuarioPuesto" class="form-control" />
+        }
+    </div>
+
+    <div class="col-md-3">
+        <label>NoCartaCustodia</label>
+        @if (ViewBag.Maquinas != null)
+        {
+            <input type="text" id="NoCartaCustodia" name="NoCartaCustodia" class="form-control" value="@ViewBag.Maquinas.NoCartaCustodia" />
+        }
+        else
+        {
+            <input type="text" id="NoCartaCustodia" name="NoCartaCustodia" class="form-control" />
+        }
+    </div>
+
+</div>
+<br />
+<div class="row">
+    <div class="col-md-2">
+        <a href="javascript:guardarMaquina()" class="btn btn-success">Alta</a>
+    </div>
+</div>
+
+

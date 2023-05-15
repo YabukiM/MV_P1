@@ -1,5 +1,6 @@
 --procedimientos 
-
+--maquinas
+create procedure sp_agregarMaquinas (
 
 
 --tiendas
@@ -13,18 +14,18 @@
 
 --agregar
 create procedure sp_agregarTiendas (@DeptoTienda VARCHAR(50),  @NoTienda INT, @NombreTienda VARCHAR(50), @DireccionTienda VARCHAR(100), @SeriePC varchar(50), @activo bit) 
-as begin insert into Tiendas( DeptoTienda, NombreTienda, DireccionTienda, SeriePC, activo) values (@DeptoTienda, @NoTienda, @DireccionTienda, @SeriePC, @activo)
+as begin insert into Tiendas( DeptoTienda, NoTienda , NombreTienda, DireccionTienda, SeriePC, activo) values (@DeptoTienda, @NoTienda,@NombreTienda, @DireccionTienda, @SeriePC, @activo)
 end
 
 
 --editar 
 
-create procedure sp_editarTiendas (@ID_Tienda int, @DeptoTienda VARCHAR(50),  @NoTienda INT, @NombreTienda VARCHAR(50), @DireccionTienda VARCHAR(100), @SeriePC varchar(50))
+create procedure sp_editarTiendas (@ID_Tienda int, @DeptoTienda VARCHAR(50),  @NoTienda INT, @NombreTienda VARCHAR(50), @DireccionTienda VARCHAR(100))
 AS
 BEGIN
 SET NOCOUNT ON;
 UPDATE sp_editarTiendas
-set DeptoTienda= @DeptoTienda, NoTienda = @NoTienda, NombreTienda= @NombreTienda, DireccionTienda= @DireccionTienda, SeriePC= @SeriePC
+set DeptoTienda= @DeptoTienda, NoTienda = @NoTienda, NombreTienda= @NombreTienda, DireccionTienda= @DireccionTienda
 where ID_TIENDA =@ID_Tienda
 END
 

@@ -20,8 +20,8 @@ ALTER TABLE Maquinas ADD Activo BIT
 CREATE TABLE Tiendas (
   ID_Tienda int primary key identity (1,1),
   DeptoTienda VARCHAR(50),
-  NoTienda INT NOT NULL,
-  NombreTienda VARCHAR(50) NOT NULL,
+  NoTienda INT ,
+  NombreTienda VARCHAR(50),
   DireccionTienda VARCHAR(100) ,
   SeriePC varchar(50), 
   foreign key (SeriePC)references Maquinas(SeriePC)

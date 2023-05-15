@@ -22,7 +22,6 @@ function guardarTienda() {
         data: {
 
             ID_Tienda: id,
-            Nombre_Completo: document.getElementById("Nombre").value,
             DeptoTienda: document.getElementById("DeptoTienda").value,
             NoTienda: document.getElementById("NoTienda").value,
             NombreTienda: document.getElementById("NombreTienda").value,
