@@ -1,0 +1,139 @@
+﻿
+<h2>ForumularioTiendas</h2>
+<script>
+    var urlGuardarTienda = '@Url.Action("guardarTienda", "Tiendas")';
+</script>
+
+<script src="~/Scripts/guardarTienda.js"></script>
+
+<div class="row">
+    <div class="col-md-3">
+        <label>Departamento Tienda</label>
+        @if (ViewBag.Tiendas != null)
+        {
+            <input type="text" id="DeptoTienda" name="DeptoTienda" class="form-control" value="@ViewBag.Tiendas.DeptoTienda" />
+        }
+        else
+        {
+            <input type="text" id="DeptoTienda" name="DeptoTienda" class="form-control" />
+        }
+    </div>
+    <div class="col-md-3">
+        <label>No. Tienda</label>
+        @if (ViewBag.Tiendas != null)
+        {
+            <input type="text" id="NoTienda" name="NoTienda" class="form-control" value="@ViewBag.Tiendas.NoTienda" />
+        }
+        else
+        {
+            <input type="text" id="NoTienda" name="NoTienda" class="form-control" />
+        }
+    </div>
+    <div class="col-md-3">
+        <label>Nombre Tienda</label>
+        @if (ViewBag.Tiendas != null)
+        {
+            <input type="tel" id="NombreTienda" name="NombreTienda" class="form-control" value="@ViewBag.Tiendas.NombreTienda" />
+        }
+        else
+        {
+            <input type="tel" id="NombreTienda" name="NombreTienda" class="form-control" />
+        }
+    </div>
+    <div class="col-md-3">
+        <label>Correo</label>
+        @if (ViewBag.Empleados != null)
+        {
+            <input type="text" id="Correo" name="Correo" class="form-control" value="@ViewBag.empleados.Correo" />
+
+        }
+        else
+        {
+            <input type="text" id="Correo" name="Correo" class="form-control" />
+        }
+    </div>
+
+    <div class="col-md-3">
+        <label>DireccionTienda</label>
+        @if (ViewBag.DireccionTienda != null)
+        {
+            <input type="text" id="DireccionTienda" name="DireccionTienda" class="form-control" value="@ViewBag.Tiendas.DireccionTienda" />
+        }
+        else
+        {
+            <input type="text" id="DireccionTienda" name="DireccionTienda" class="form-control" />
+        }
+    </div>
+
+
+    <div>
+        <label>Serie PC</label>
+        @if (ViewBag.Tiendas != null)
+        {
+            <select class="form-select mb-md-3" id="SeriePC" name="SeriePC" value="@ViewBag.Tiendas.SeriePC">
+                <option value="0"> Seleccionar </option>
+                @foreach (var item in ViewBag.Maquinas)
+                {
+
+                    if (ViewBag.Tiendas != null)
+                    {
+
+                        if (ViewBag.Tiendas.SeriePC == item.SeriePC)
+                        {
+                            <option value="@item.SeriePC" selected>@item.SeriePC</option>
+                        }
+
+                        else
+                        {
+                            <option value="@item.SeriePC">@item.SeriePC</option>
+                        }
+
+                    }
+                    else
+                    {
+                        <option value="@item.SeriePC">@item.SeriePC</option>
+                    }
+
+                }
+            </select>
+
+        }
+        else
+        {
+            <select class="form-select mb-md-3" id="SeriePC" name="SeriePC">
+                <option value="0"> Seleccionar </option>
+                @foreach (var item in ViewBag.Maquinas)
+                {
+
+                    if (ViewBag.Tiendas != null)
+                    {
+
+                        if (ViewBag.Tiendas.SeriePC == item.SeriePC)
+                        {
+                            <option value="@item.SeriePC" selected>@item.SeriePC</option>
+                        }
+
+                        else
+                        {
+                            <option value="@item.SeriePC">@item.SeriePC</option>
+                        }
+
+                    }
+                    else
+                    {
+                        <option value="@item.SeriePC">@item.SeriePC</option>
+                    }
+
+                }
+            </select>
+        }
+
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-2">
+        <a href="javascript:guardarTienda()" class="btn btn-success">Alta</a>
+    </div>
+</div>
+
