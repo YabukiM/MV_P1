@@ -1,9 +1,13 @@
 ﻿
 <h2>ForumularioTiendas</h2>
 <script>
+
     var urlGuardarTienda = '@Url.Action("guardarTienda", "Tiendas")';
+
 </script>
+
 <script src="~/Scripts/guardarTienda.js"></script>
+
 <div class="row">
     <div class="col-md-3">
         <label>Departamento Tienda</label>
@@ -16,6 +20,7 @@
             <input type="text" id="DeptoTienda" name="DeptoTienda" class="form-control" />
         }
     </div>
+
     <div class="col-md-3">
         <label>No. Tienda</label>
         @if (ViewBag.Tiendas != null)

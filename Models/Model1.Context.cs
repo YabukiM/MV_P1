@@ -28,9 +28,9 @@ namespace MV_P1.Models
         }
     
         public virtual DbSet<contratos> contratos { get; set; }
-        public virtual DbSet<empleado> empleado { get; set; }
         public virtual DbSet<Maquinas> Maquinas { get; set; }
         public virtual DbSet<Tiendas> Tiendas { get; set; }
+        public virtual DbSet<empleado> empleado { get; set; }
     
         public virtual int sp_editarTiendas(Nullable<int> iD_Tienda, string deptoTienda, Nullable<int> noTienda, string nombreTienda, string direccionTienda)
         {
@@ -93,6 +93,65 @@ namespace MV_P1.Models
                 new ObjectParameter("activo", typeof(bool));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_agregarTiendas", deptoTiendaParameter, noTiendaParameter, nombreTiendaParameter, direccionTiendaParameter, seriePCParameter, activoParameter);
+        }
+    
+        public virtual int sp_agregar_emplado(string nombre, string seriePC, string puesto, string cartacustiodia, Nullable<bool> activo)
+        {
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("nombre", nombre) :
+                new ObjectParameter("nombre", typeof(string));
+    
+            var seriePCParameter = seriePC != null ?
+                new ObjectParameter("seriePC", seriePC) :
+                new ObjectParameter("seriePC", typeof(string));
+    
+            var puestoParameter = puesto != null ?
+                new ObjectParameter("puesto", puesto) :
+                new ObjectParameter("puesto", typeof(string));
+    
+            var cartacustiodiaParameter = cartacustiodia != null ?
+                new ObjectParameter("cartacustiodia", cartacustiodia) :
+                new ObjectParameter("cartacustiodia", typeof(string));
+    
+            var activoParameter = activo.HasValue ?
+                new ObjectParameter("activo", activo) :
+                new ObjectParameter("activo", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_agregar_emplado", nombreParameter, seriePCParameter, puestoParameter, cartacustiodiaParameter, activoParameter);
+        }
+    
+        public virtual int sp_editarEmpleado(Nullable<int> no_emp, string nombre, string seriePC, string puesto, string cartacustiodia)
+        {
+            var no_empParameter = no_emp.HasValue ?
+                new ObjectParameter("No_emp", no_emp) :
+                new ObjectParameter("No_emp", typeof(int));
+    
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("nombre", nombre) :
+                new ObjectParameter("nombre", typeof(string));
+    
+            var seriePCParameter = seriePC != null ?
+                new ObjectParameter("seriePC", seriePC) :
+                new ObjectParameter("seriePC", typeof(string));
+    
+            var puestoParameter = puesto != null ?
+                new ObjectParameter("puesto", puesto) :
+                new ObjectParameter("puesto", typeof(string));
+    
+            var cartacustiodiaParameter = cartacustiodia != null ?
+                new ObjectParameter("cartacustiodia", cartacustiodia) :
+                new ObjectParameter("cartacustiodia", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_editarEmpleado", no_empParameter, nombreParameter, seriePCParameter, puestoParameter, cartacustiodiaParameter);
+        }
+    
+        public virtual int sp_eliminar_empleado(Nullable<int> no_emp)
+        {
+            var no_empParameter = no_emp.HasValue ?
+                new ObjectParameter("No_emp", no_emp) :
+                new ObjectParameter("No_emp", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_eliminar_empleado", no_empParameter);
         }
     }
 }
