@@ -37,3 +37,33 @@ UPDATE Tiendas
 SET activo = 0
 WHERE ID_Tienda = @ID_Tienda
 END
+
+
+-- empleado
+ --No_emp int primary key identity (1,1),
+	--nombre varchar (30),
+	--seriePC varchar(50), 
+	--puesto varchar(30),
+	--cartacustiodia int not null unique,
+	--foreign key (seriePC) references Maquinas(seriePC)
+--agregar
+create procedure sp_agregar_emplado( @nombre varchar (30), @seriePC varchar(50) , @puesto varchar(30), @cartacustiodia varchar(50), @activo bit)
+as begin insert into empleado(nombre, seriePC, puesto, cartacustiodia, Activo) values	(@nombre,@seriePC,@puesto, @cartacustiodia,@activo)
+end
+--editar
+create procedure sp_editarEmpleado(@No_emp int, @nombre varchar (30), @seriePC varchar(50) , @puesto varchar(30), @cartacustiodia varchar(50))
+AS
+BEGIN
+SET NOCOUNT ON;
+UPDATE sp_editarEmpleado
+set nombre= @nombre, seriePC = @seriePC, puesto= @puesto, cartacustiodia= @cartacustiodia
+where No_emp =No_emp
+END
+--eliminar
+CREATE PROCEDURE sp_eliminar_empleado (@No_emp INT)
+AS
+BEGIN
+UPDATE empleado
+SET activo = 0
+WHERE No_emp = @No_emp
+END

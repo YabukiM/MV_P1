@@ -34,10 +34,10 @@ create table empleado(
 	nombre varchar (30),
 	seriePC varchar(50), 
 	puesto varchar(30),
-	cartacustiodia int not null unique,
+	cartacustiodia varchar(50) unique,
 	foreign key (seriePC) references Maquinas(seriePC)
 );
-
+ALTER TABLE empleado drop COLUMN cartacustiodia  
 ALTER TABLE empleado ADD Activo BIT
 
 create table contratos (
@@ -51,6 +51,7 @@ create table contratos (
 	Folio_pedido int,
 	fecha_pedido  varchar(30),
 	SeriePC  VARCHAR(50), 
+	activo bit,
 	foreign key (seriePC) references Maquinas(seriePC)
 
 )
