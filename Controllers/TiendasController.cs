@@ -39,8 +39,10 @@ namespace MV_P1.Controllers
                 db.sp_editarTiendas(ID_Tienda, DeptoTienda, NoTienda, NombreTienda, DireccionTienda);
             }
             else
+            {
                 db.sp_agregarTiendas(DeptoTienda, NoTienda, NombreTienda, DireccionTienda, seriePC, true);
 
+            }
             return Json("");
         }
     }

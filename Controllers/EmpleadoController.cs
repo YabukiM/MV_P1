@@ -32,9 +32,16 @@ namespace MV_P1.Controllers
 
         }
 
-        public JsonResult guardarempleado(int? No_emp, string nombre, string seriePC, string puesto, int cartacustiodia)
+        public JsonResult guardarempleado(int? No_emp, string nombre, string seriePC, string puesto, string cartacustiodia)
         {
-
+            if(No_emp != null)
+            {
+                db.sp_editarEmpleado(No_emp, nombre, seriePC, puesto, cartacustiodia);
+            }
+            else
+            {
+                db.sp_agregar_emplado(nombre, seriePC, puesto,cartacustiodia, true);
+            }
             return Json("");
         }
 
