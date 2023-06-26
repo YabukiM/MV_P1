@@ -22,20 +22,6 @@
             <input type="text" id="nombre" name="nombre" class="form-control" />
         }
     </div>
-
-
-    <div class="col-md-3">
-        <label>Puesto</label>
-        @if (ViewBag.empleado != null)
-        {
-            <input type="text" id="puesto" name="puesto" class="form-control" value="@ViewBag.empleado.puesto" />
-        }
-        else
-        {
-            <input type="text" id="puesto" name="puesto" class="form-control" />
-        }
-    </div>
-
     <label>Serie PC</label>
     <select class="form-select mb-md-3" id="SeriePC" name="SeriePC">
         <option value="0"> Seleccionar </option>
@@ -45,7 +31,7 @@
             if (ViewBag.empleado != null)
             {
 
-                if (ViewBag.empleado.SeriePC == item.SeriePC)
+                if (ViewBag.empleado.seriePC == item.SeriePC)
                 {
                     <option value="@item.SeriePC" selected>@item.SeriePC</option>
                 }
@@ -63,6 +49,20 @@
 
         }
     </select>
+
+    <div class="col-md-3">
+        <label>Puesto</label>
+        @if (ViewBag.empleado != null)
+        {
+            <input type="text" id="puesto" name="puesto" class="form-control" value="@ViewBag.empleado.puesto" />
+        }
+        else
+        {
+            <input type="text" id="puesto" name="puesto" class="form-control" />
+        }
+    </div>
+
+
 </div>
 
 <br />

@@ -33,19 +33,24 @@ namespace MV_P1.Controllers
 
         }
 
-        public JsonResult guardarempleado(int? No_emp, string nombre, string seriePC, string puesto)
+        public JsonResult guardarempleado(int? No_emp, string nombre, string SeriePC, string puesto)
         {
             if(No_emp != null)
             {
-                db.sp_editarEmpleado(No_emp, nombre, puesto, seriePC);
+                db.sp_editarEmpleado(No_emp, nombre, puesto, SeriePC);
             }
             else
             {
-                db.sp_agregar_emplado(nombre,  puesto, seriePC, true);
+                db.sp_agregar_emplado(nombre,  puesto, SeriePC, true);
             }
             return Json("");
         }
 
+        public ActionResult Eliminar(int? No_emp)
+        {
+            db.sp_eliminar_empleado(No_emp);
+            return RedirectToAction("guardarempleado", "empleado");
+        }
 
     }
 }

@@ -28,10 +28,10 @@ namespace MV_P1.Models
         }
     
         public virtual DbSet<contratos> contratos { get; set; }
-        public virtual DbSet<empleado> empleado { get; set; }
         public virtual DbSet<Maquinas> Maquinas { get; set; }
         public virtual DbSet<Tiendas> Tiendas { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<empleado> empleado { get; set; }
     
         public virtual int sp_agregarTiendas(string deptoTienda, Nullable<int> noTienda, string nombreTienda, string direccionTienda, string seriePC, Nullable<bool> activo)
         {

@@ -81,7 +81,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__empleado__serieP__2A4B4B5E">
+        <Association Name="FK__empleado__serieP__72C60C4A">
           <End Role="Maquinas" Type="Self.Maquinas" Multiplicity="0..1" />
           <End Role="empleado" Type="Self.empleado" Multiplicity="*" />
           <ReferentialConstraint>
@@ -180,7 +180,7 @@
             <End Role="Maquinas" EntitySet="Maquinas" />
             <End Role="contratos" EntitySet="contratos" />
           </AssociationSet>
-          <AssociationSet Name="FK__empleado__serieP__2A4B4B5E" Association="Self.FK__empleado__serieP__2A4B4B5E">
+          <AssociationSet Name="FK__empleado__serieP__72C60C4A" Association="Self.FK__empleado__serieP__72C60C4A">
             <End Role="Maquinas" EntitySet="Maquinas" />
             <End Role="empleado" EntitySet="empleado" />
           </AssociationSet>
@@ -210,17 +210,6 @@
           <Property Name="activo" Type="Boolean" />
           <NavigationProperty Name="Maquinas" Relationship="Self.FK__contratos__Serie__2D27B809" FromRole="contratos" ToRole="Maquinas" />
         </EntityType>
-        <EntityType Name="empleado">
-          <Key>
-            <PropertyRef Name="No_emp" />
-          </Key>
-          <Property Name="No_emp" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="seriePC" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="puesto" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="Activo" Type="Boolean" />
-          <NavigationProperty Name="Maquinas" Relationship="Self.FK__empleado__serieP__2A4B4B5E" FromRole="empleado" ToRole="Maquinas" />
-        </EntityType>
         <EntityType Name="Maquinas">
           <Key>
             <PropertyRef Name="SeriePC" />
@@ -237,8 +226,8 @@
           <Property Name="NoCartaCustodia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Activo" Type="Boolean" />
           <NavigationProperty Name="contratos1" Relationship="Self.FK__contratos__Serie__2D27B809" FromRole="Maquinas" ToRole="contratos" />
-          <NavigationProperty Name="empleado" Relationship="Self.FK__empleado__serieP__2A4B4B5E" FromRole="Maquinas" ToRole="empleado" />
           <NavigationProperty Name="Tiendas" Relationship="Self.FK__Tiendas__SeriePC__276EDEB3" FromRole="Maquinas" ToRole="Tiendas" />
+          <NavigationProperty Name="empleado" Relationship="InventoryModel.FK__empleado__serieP__72C60C4A" FromRole="Maquinas" ToRole="empleado" />
         </EntityType>
         <EntityType Name="Tiendas">
           <Key>
@@ -265,18 +254,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__empleado__serieP__2A4B4B5E">
-          <End Role="Maquinas" Type="Self.Maquinas" Multiplicity="0..1" />
-          <End Role="empleado" Type="Self.empleado" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Maquinas">
-              <PropertyRef Name="SeriePC" />
-            </Principal>
-            <Dependent Role="empleado">
-              <PropertyRef Name="seriePC" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__Tiendas__SeriePC__276EDEB3">
           <End Role="Maquinas" Type="Self.Maquinas" Multiplicity="0..1" />
           <End Role="Tiendas" Type="Self.Tiendas" Multiplicity="*" />
@@ -291,16 +268,11 @@
         </Association>
         <EntityContainer Name="InventoryEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="contratos" EntityType="Self.contratos" />
-          <EntitySet Name="empleado" EntityType="Self.empleado" />
           <EntitySet Name="Maquinas" EntityType="Self.Maquinas" />
           <EntitySet Name="Tiendas" EntityType="Self.Tiendas" />
           <AssociationSet Name="FK__contratos__Serie__2D27B809" Association="Self.FK__contratos__Serie__2D27B809">
             <End Role="Maquinas" EntitySet="Maquinas" />
             <End Role="contratos" EntitySet="contratos" />
-          </AssociationSet>
-          <AssociationSet Name="FK__empleado__serieP__2A4B4B5E" Association="Self.FK__empleado__serieP__2A4B4B5E">
-            <End Role="Maquinas" EntitySet="Maquinas" />
-            <End Role="empleado" EntitySet="empleado" />
           </AssociationSet>
           <AssociationSet Name="FK__Tiendas__SeriePC__276EDEB3" Association="Self.FK__Tiendas__SeriePC__276EDEB3">
             <End Role="Maquinas" EntitySet="Maquinas" />
@@ -371,6 +343,11 @@
             <Parameter Name="puesto" Mode="In" Type="String" />
             <Parameter Name="SeriePC" Mode="In" Type="String" />
           </FunctionImport>
+          <EntitySet Name="empleado" EntityType="InventoryModel.empleado" />
+          <AssociationSet Name="FK__empleado__serieP__72C60C4A" Association="InventoryModel.FK__empleado__serieP__72C60C4A">
+            <End Role="Maquinas" EntitySet="Maquinas" />
+            <End Role="empleado" EntitySet="empleado" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -393,6 +370,29 @@
           <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
           <Property Type="Int32" Name="OwnerID" Nullable="false" />
         </ComplexType>
+        <EntityType Name="empleado">
+          <Key>
+            <PropertyRef Name="No_emp" />
+          </Key>
+          <Property Name="No_emp" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="seriePC" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="puesto" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Activo" Type="Boolean" />
+          <NavigationProperty Name="Maquinas" Relationship="InventoryModel.FK__empleado__serieP__72C60C4A" FromRole="empleado" ToRole="Maquinas" />
+        </EntityType>
+        <Association Name="FK__empleado__serieP__72C60C4A">
+          <End Type="InventoryModel.Maquinas" Role="Maquinas" Multiplicity="0..1" />
+          <End Type="InventoryModel.empleado" Role="empleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Maquinas">
+              <PropertyRef Name="SeriePC" />
+            </Principal>
+            <Dependent Role="empleado">
+              <PropertyRef Name="seriePC" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -413,17 +413,6 @@
                 <ScalarProperty Name="fecha_pedido" ColumnName="fecha_pedido" />
                 <ScalarProperty Name="SeriePC" ColumnName="SeriePC" />
                 <ScalarProperty Name="activo" ColumnName="activo" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="empleado">
-            <EntityTypeMapping TypeName="InventoryModel.empleado">
-              <MappingFragment StoreEntitySet="empleado">
-                <ScalarProperty Name="No_emp" ColumnName="No_emp" />
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="seriePC" ColumnName="seriePC" />
-                <ScalarProperty Name="puesto" ColumnName="puesto" />
-                <ScalarProperty Name="Activo" ColumnName="Activo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -498,6 +487,17 @@
           <FunctionImportMapping FunctionImportName="sp_editarTiendas" FunctionName="InventoryModel.Store.sp_editarTiendas" />
           <FunctionImportMapping FunctionImportName="sp_agregar_emplado" FunctionName="InventoryModel.Store.sp_agregar_emplado" />
           <FunctionImportMapping FunctionImportName="sp_editarEmpleado" FunctionName="InventoryModel.Store.sp_editarEmpleado" />
+          <EntitySetMapping Name="empleado">
+            <EntityTypeMapping TypeName="InventoryModel.empleado">
+              <MappingFragment StoreEntitySet="empleado">
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="puesto" ColumnName="puesto" />
+                <ScalarProperty Name="seriePC" ColumnName="seriePC" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="No_emp" ColumnName="No_emp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

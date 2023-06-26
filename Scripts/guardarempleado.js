@@ -24,7 +24,7 @@ function guardarempleado() {
             No_emp: No_emp,
             nombre: document.getElementById("nombre").value,
             puesto: document.getElementById("puesto").value,
-            SeriePC: document.getElementById("SeriePC").value
+            seriePC: document.getElementById("seriePC").value
 
 
 

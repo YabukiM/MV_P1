@@ -13,12 +13,13 @@
     @foreach (var item in Model)
     {
         <tr>
+            <td>@item.ID_Tienda</td>
             <td>@item.DeptoTienda</td>
             <td>@item.NoTienda</td>
             <td>@item.NombreTienda</td>
             <td>@item.DireccionTienda</td>
             <td>@item.Maquinas.SeriePC</td>
-            
+
             <td><a href="~/Tiendas/ForumularioTiendas?ID_Tienda=@item.ID_Tienda" class="btn btn-info">Editar</a></td>
             <td><a href="~/Tiendas/Eliminar?ID_Tienda=@item.ID_Tienda" class="btn btn-warning">Baja</a></td>
         </tr>
