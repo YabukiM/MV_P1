@@ -9,7 +9,7 @@ namespace MV_P1.Controllers
 {
     public class MaquinasController : Controller
     {
-        InventoryEntities1 db = new InventoryEntities1();
+        InventoryEntities db = new InventoryEntities();
 
         public ActionResult DatosMaquinas()
         {
@@ -19,7 +19,7 @@ namespace MV_P1.Controllers
 
         public ActionResult FormularioMaquinas()
         {
-            var seriepc = Request.Params["SeriePCSeriePC"];
+            var seriepc = Request.Params["SeriePC"];
             if (seriepc != null)
             {
                 int id = int.Parse(seriepc);

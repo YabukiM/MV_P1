@@ -24,7 +24,6 @@ function guardarempleado() {
             No_emp: No_emp,
             nombre: document.getElementById("nombre").value,
             puesto: document.getElementById("puesto").value,
-            cartacustiodia: document.getElementById("cartacustiodia").value,
             SeriePC: document.getElementById("SeriePC").value
 
 

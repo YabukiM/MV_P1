@@ -9,7 +9,7 @@ namespace MV_P1.Controllers
 {
     public class TiendasController : Controller
     {
-        InventoryEntities1 db = new InventoryEntities1();
+        InventoryEntities db = new InventoryEntities();
 
         public ActionResult DatosTiendas()
         {
@@ -21,11 +21,11 @@ namespace MV_P1.Controllers
         public ActionResult ForumularioTiendas() 
         {
             var id_tienda = Request.Params["ID_Tienda"];
-            if(id_tienda != null)
+            if (id_tienda != null)
             {
                 int id = int.Parse(id_tienda);
-                var tiendas = db.Tiendas.Where(x => x.Activo == true).ToList();
-                ViewBag.Tiendas=tiendas;
+                var tiendas = db.Tiendas.Where(x => x.ID_Tienda == id).FirstOrDefault();
+                ViewBag.Tiendas = tiendas;
             }
             ViewBag.Maquinas = db.Maquinas.Where(x => x.Activo == true).ToList();
             return View();
@@ -36,7 +36,7 @@ namespace MV_P1.Controllers
         {
             if (ID_Tienda != null)
             {
-                db.sp_editarTiendas(ID_Tienda, DeptoTienda, NoTienda, NombreTienda, DireccionTienda);
+                db.sp_editarTiendas(ID_Tienda, DeptoTienda, NoTienda, NombreTienda, DireccionTienda, seriePC);
             }
             else
             {
@@ -45,5 +45,8 @@ namespace MV_P1.Controllers
             }
             return Json("");
         }
+
+
+
     }
 }

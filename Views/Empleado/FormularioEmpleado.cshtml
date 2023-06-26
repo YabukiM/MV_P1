@@ -1,4 +1,4 @@
-﻿
+﻿s
 
 <h2>FormularioEmpleado</h2>
 <script>
@@ -10,6 +10,7 @@
 <script src="~/Scripts/guardarempleado.js"></script>
 
 <div class="row">
+
     <div class="col-md-3">
         <label>Nombre empleado</label>
         @if (ViewBag.empleado != null)
@@ -23,30 +24,6 @@
     </div>
 
 
-    <label>Serie PC</label>
-    <select class="form-select mb-md-3" id="SeriePC" name="SeriePC">
-        <option value="0"> Seleccionar </option>
-        @foreach (var item in ViewBag.Maquinas)
-        {
-            if (ViewBag.empleado != null)
-            {
-                if (ViewBag.empleado.SeriePC == item.SeriePC)
-                {
-                    <option value="@item.SeriePC" selected>@item.SeriePC</option>
-                }
-
-                else
-                {
-                    <option value="@item.SeriePC">@item.SeriePC</option>
-                }
-            }
-            else
-            {
-                <option value="@item.SeriePC">@item.SeriePC</option>
-            }
-        }
-    </select>
-
     <div class="col-md-3">
         <label>Puesto</label>
         @if (ViewBag.empleado != null)
@@ -58,18 +35,34 @@
             <input type="text" id="puesto" name="puesto" class="form-control" />
         }
     </div>
-    <div class="col-md-3">
-        <label>Carta Custodia</label>
-        @if (ViewBag.empleado != null)
-        {
-            <input type="text" id="cartacustiodia" name="cartacustiodia" class="form-control" value="@ViewBag.empleado.cartacustiodia" />
-        }
-        else
-        {
-            <input type="text" id="cartacustiodia" name="cartacustiodia" class="form-control" />
-        }
-    </div>
 
+    <label>Serie PC</label>
+    <select class="form-select mb-md-3" id="SeriePC" name="SeriePC">
+        <option value="0"> Seleccionar </option>
+        @foreach (var item in ViewBag.Maquinas)
+        {
+
+            if (ViewBag.empleado != null)
+            {
+
+                if (ViewBag.empleado.SeriePC == item.SeriePC)
+                {
+                    <option value="@item.SeriePC" selected>@item.SeriePC</option>
+                }
+
+                else
+                {
+                    <option value="@item.SeriePC">@item.SeriePC</option>
+                }
+
+            }
+            else
+            {
+                <option value="@item.SeriePC">@item.SeriePC</option>
+            }
+
+        }
+    </select>
 </div>
 
 <br />

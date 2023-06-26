@@ -27,7 +27,8 @@ function guardarTienda() {
             NombreTienda: document.getElementById("NombreTienda").value,
             DireccionTienda: document.getElementById("DireccionTienda").value,
             SeriePC: document.getElementById("SeriePC").value
-           
+
+
 
 
         },

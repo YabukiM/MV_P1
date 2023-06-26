@@ -32,6 +32,9 @@
             <input type="text" id="NoTienda" name="NoTienda" class="form-control" />
         }
     </div>
+
+
+
     <div class="col-md-3">
         <label>Nombre Tienda</label>
         @if (ViewBag.Tiendas != null)
@@ -58,41 +61,43 @@
     </div>
 
 
-        <label>Serie PC</label>
-        <select class="form-select mb-md-3" id="SeriePC" name="SeriePC" >
-            <option value="0"> Seleccionar </option>
-            @foreach (var item in ViewBag.Maquinas)
+
+    <label>Serie PC</label>
+    <select class="form-select mb-md-3" id="SeriePC" name="SeriePC">
+        <option value="0"> Seleccionar </option>
+        @foreach (var item in ViewBag.Maquinas)
+        {
+
+            if (ViewBag.Tiendas != null)
             {
 
-                if (ViewBag.Tiendas != null)
+                if (ViewBag.Tiendas.SeriePC == item.SeriePC)
                 {
-
-                    if (ViewBag.Tiendas.SeriePC == item.SeriePC)
-                    {
-                        <option value="@item.SeriePC" selected>@item.SeriePC</option>
-                    }
-
-                    else
-                    {
-                        <option value="@item.SeriePC">@item.SeriePC</option>
-                    }
-
+                    <option value="@item.SeriePC" selected>@item.SeriePC</option>
                 }
+
                 else
                 {
                     <option value="@item.SeriePC">@item.SeriePC</option>
                 }
 
             }
-        </select>
-    
+            else
+            {
+                <option value="@item.SeriePC">@item.SeriePC</option>
+            }
+
+        }
+    </select>
+
+
 
 </div>
 
-    <br />
-    <div class="row">
-        <div class="col-md-2">
-            <a href="javascript:guardarTienda()" class="btn btn-success">Alta</a>
-        </div>
+<br />
+<div class="row">
+    <div class="col-md-2">
+        <a href="javascript:guardarTienda()" class="btn btn-success">Alta</a>
     </div>
+</div>
 

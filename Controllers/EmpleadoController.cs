@@ -10,7 +10,7 @@ namespace MV_P1.Controllers
     public class EmpleadoController : Controller
     {
         
-        InventoryEntities1 db = new InventoryEntities1 ();
+        InventoryEntities db = new InventoryEntities ();
 
         public ActionResult DatosEmpleados()
         {
@@ -20,11 +20,12 @@ namespace MV_P1.Controllers
 
         public ActionResult FormularioEmpleado() 
         {
+
             var No_emp = Request.Params["No_emp"];
             if (No_emp != null)
             {
                 int id = int.Parse(No_emp);
-                var empleado = db.empleado.Where(x => x.Activo == true).ToList();
+                var empleado = db.empleado.Where(x => x.No_emp == id).FirstOrDefault();
                 ViewBag.empleado = empleado;
             }
             ViewBag.Maquinas = db.Maquinas.Where(x => x.Activo == true).ToList();
@@ -32,15 +33,15 @@ namespace MV_P1.Controllers
 
         }
 
-        public JsonResult guardarempleado(int? No_emp, string nombre, string seriePC, string puesto, string cartacustiodia)
+        public JsonResult guardarempleado(int? No_emp, string nombre, string seriePC, string puesto)
         {
             if(No_emp != null)
             {
-                db.sp_editarEmpleado(No_emp, nombre, seriePC, puesto, cartacustiodia);
+                db.sp_editarEmpleado(No_emp, nombre, puesto, seriePC);
             }
             else
             {
-                db.sp_agregar_emplado(nombre, seriePC, puesto,cartacustiodia, true);
+                db.sp_agregar_emplado(nombre,  puesto, seriePC, true);
             }
             return Json("");
         }
