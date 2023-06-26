@@ -376,7 +376,7 @@
           </Key>
           <Property Name="No_emp" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="seriePC" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SeriePC" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="puesto" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="Activo" Type="Boolean" />
           <NavigationProperty Name="Maquinas" Relationship="InventoryModel.FK__empleado__serieP__72C60C4A" FromRole="empleado" ToRole="Maquinas" />
@@ -389,7 +389,7 @@
               <PropertyRef Name="SeriePC" />
             </Principal>
             <Dependent Role="empleado">
-              <PropertyRef Name="seriePC" />
+              <PropertyRef Name="SeriePC" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -492,7 +492,7 @@
               <MappingFragment StoreEntitySet="empleado">
                 <ScalarProperty Name="Activo" ColumnName="Activo" />
                 <ScalarProperty Name="puesto" ColumnName="puesto" />
-                <ScalarProperty Name="seriePC" ColumnName="seriePC" />
+                <ScalarProperty Name="SeriePC" ColumnName="seriePC" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="No_emp" ColumnName="No_emp" />
               </MappingFragment>

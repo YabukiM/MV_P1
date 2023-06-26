@@ -46,10 +46,10 @@ namespace MV_P1.Controllers
             return Json("");
         }
 
-        public ActionResult Eliminar(int? ID_Tienda)
+        public ActionResult Eliminar(int ID_Tienda)
         {
             db.sp_eliminar_tiendas(ID_Tienda);
-            return RedirectToAction("guardarTienda", "Tiendas");
+            return RedirectToAction("DatosTiendas", "Tiendas");
         }
     }
 
