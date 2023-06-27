@@ -6,7 +6,7 @@
 <h2>FormularioMaquinas</h2>
 
 <script>
-    var urlGuardarMaquina = '@Url.Action("guardarMaquina", "Maquina")';
+    var urlGuardarMaquina = '@Url.Action("guardarMaquina", "Maquinas")';
 </script>
 
 <script src="~/Scripts/guardarMaquina.js"></script>
@@ -83,17 +83,6 @@
         }
     </div>
 
-    <div class="col-md-3">
-        <label>NombreUsuarioPuesto</label>
-        @if (ViewBag.Maquinas != null)
-        {
-            <input type="text" id="NombreUsuarioPuesto" name="NombreUsuarioPuesto" class="form-control" value="@ViewBag.Maquinas.NombreUsuarioPuesto" />
-        }
-        else
-        {
-            <input type="text" id="NombreUsuarioPuesto" name="NombreUsuarioPuesto" class="form-control" />
-        }
-    </div>
     <div class="col-md-3">
         <label>NombreUsuarioPuesto</label>
         @if (ViewBag.Maquinas != null)
