@@ -25,10 +25,12 @@ function guardarMaquina() {
             Contratos: document.getElementById("Contratos").value,
             Producto: document.getElementById("Producto").value,
             Descripcion: document.getElementById("Descripcion").value,
-            SeriePC: document.getElementById("Asignada").value,
-            SeriePC: document.getElementById("Estatuss").value,
-            SeriePC: document.getElementById("NombreUsuarioPuesto").value,
-            SeriePC: document.getElementById("NoCartaCustodia").value
+            SeriePC: document.getElementById("SeriePC").value,
+            Destino: document.getElementById("Destino").value,
+            Asignada: document.getElementById("Asignada").value,
+            Estatuss: document.getElementById("Estatuss").value,
+            NombreUsuarioPuesto: document.getElementById("NombreUsuarioPuesto").value,
+            NoCartaCustodia: document.getElementById("NoCartaCustodia").value
 
 
 

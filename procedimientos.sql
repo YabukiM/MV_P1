@@ -1,6 +1,37 @@
 --procedimientos 
 --maquinas
-create procedure sp_agregarMaquinas (
+create procedure sp_agregarMaquinas ( @Contratos VARCHAR(50) , @Producto VARCHAR(50), @Descripcion VARCHAR(100), @SeriePC VARCHAR(50), 
+@Destino VARCHAR(50), @Asignada VARCHAR(50), @Estatuss VARCHAR(50), @NombreUsuarioPuesto VARCHAR(50), @NoCartaCustodia VARCHAR(50), @Activo bit)
+as begin insert into Maquinas( Contratos  ,Producto , Descripcion ,SeriePC,  Destino , Asignada ,Estatuss ,  NombreUsuarioPuesto, NoCartaCustodia, Activo)
+values  ( @Contratos  , @Producto , @Descripcion , @SeriePC,  @Destino , @Asignada , @Estatuss ,  @NombreUsuarioPuesto, @NoCartaCustodia,  @Activo)
+end
+
+--editar
+create procedure sp_editarMaquinas( @Conteo int, @Contratos VARCHAR(50) , @Producto VARCHAR(50), @Descripcion VARCHAR(100), @SeriePC VARCHAR(50), @Destino VARCHAR(50), @Asignada VARCHAR(50), @Estatuss VARCHAR(50), @NombreUsuarioPuesto VARCHAR(50), @NoCartaCustodia VARCHAR(50))
+AS BEGIN 
+SET NOCOUNT ON;
+UPDATE sp_editarMaquinas
+set Contratos = @Contratos  , Producto = @Producto , Descripcion = @Descripcion , SeriePC=@SeriePC, Destino= @Destino , Asignada= @Asignada , Estatuss= @Estatuss ,  NombreUsuarioPuesto = @NombreUsuarioPuesto, NoCartaCustodia = @NoCartaCustodia
+where Conteo = @Conteo
+end
+
+create procedure sp_editarTiendas (@ID_Tienda int, @DeptoTienda VARCHAR(50),  @NoTienda INT, @NombreTienda VARCHAR(50), @DireccionTienda VARCHAR(100))
+AS
+BEGIN
+SET NOCOUNT ON;
+UPDATE sp_editarTiendas
+set DeptoTienda= @DeptoTienda, NoTienda = @NoTienda, NombreTienda= @NombreTienda, DireccionTienda= @DireccionTienda
+where ID_TIENDA =@ID_Tienda
+END
+
+--ELIMINAR
+CREATE PROCEDURE sp_eliminar_maquinas (@Conteo INT)
+AS
+BEGIN
+UPDATE Maquinas
+SET Activo = 0
+WHERE Conteo = @Conteo
+END
 
 
 --tiendas
@@ -16,8 +47,6 @@ create procedure sp_agregarMaquinas (
 create procedure sp_agregarTiendas (@DeptoTienda VARCHAR(50),  @NoTienda INT, @NombreTienda VARCHAR(50), @DireccionTienda VARCHAR(100), @SeriePC varchar(50), @activo bit) 
 as begin insert into Tiendas( DeptoTienda, NoTienda , NombreTienda, DireccionTienda, SeriePC, activo) values (@DeptoTienda, @NoTienda,@NombreTienda, @DireccionTienda, @SeriePC, @activo)
 end
-
-
 --editar 
 
 create procedure sp_editarTiendas (@ID_Tienda int, @DeptoTienda VARCHAR(50),  @NoTienda INT, @NombreTienda VARCHAR(50), @DireccionTienda VARCHAR(100))

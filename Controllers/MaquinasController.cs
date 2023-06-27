@@ -19,17 +19,28 @@ namespace MV_P1.Controllers
 
         public ActionResult FormularioMaquinas()
         {
-            var seriepc = Request.Params["SeriePC"];
-            if (seriepc != null)
+            var Conteo = Request.Params["Conteo"];
+            if (Conteo != null)
             {
-                int id = int.Parse(seriepc);
+                int id = int.Parse(Conteo);
                 var maquinas = db.Maquinas.Where(x => x.Activo == true).ToList();
                 ViewBag.Maquinas = maquinas;
             }
             return View();
         }
 
-
+        public JsonResult guardarMaquina( int? Conteo, string Contratos,string Producto, string Descripcion, string SeriePC, string Destino, string Asignada, string Estatuss, string NombreUsuarioPuesto, string NoCartaCustodia)
+        {
+            if (Conteo != null)
+            {
+                db.sp_editarMaquinas(Conteo, Contratos, Producto, Descripcion, SeriePC, Destino, Asignada, Estatuss, NombreUsuarioPuesto, NoCartaCustodia);
+            }
+            else
+            {
+                db.sp_agregarMaquinas(Contratos, Producto, Descripcion, SeriePC, Destino, Asignada, Estatuss, NombreUsuarioPuesto, NoCartaCustodia, true);
+            }
+            return Json("");
+        }
 
     }
 }

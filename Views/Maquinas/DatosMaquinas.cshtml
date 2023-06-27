@@ -11,6 +11,7 @@
 
 <table class="table table-hover">
     <tr>
+        <th>Conteo</th>
         <th>Contratos</th>
         <th>Producto</th>
         <th>SeriePC</th>
@@ -24,6 +25,7 @@
     @foreach (var item in Model)
     {
         <tr>
+            <td>@item.Conteo</td>
             <td>@item.Contratos</td>
             <td>@item.Producto</td>
             <td>@item.SeriePC</td>
@@ -33,7 +35,7 @@
             <td>@item.NombreUsuarioPuesto</td>
             <td>@item.NoCartaCustodia</td>
 
-            <td><a href="~/Maquinas/ForumularioMaquinas?SeriePC=@item.SeriePC" class="btn btn-info">Editar</a></td>
+            <td><a href="~/Maquinas/FormularioMaquinas?Conteo=@item.Conteo" class="btn btn-info">Editar</a></td>
             <td><a href="~/Maquinas/Eliminar?SeriePC=@item.SeriePC" class="btn btn-warning">Baja</a></td>
         </tr>
     }

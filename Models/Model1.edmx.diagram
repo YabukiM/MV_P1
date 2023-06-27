@@ -6,13 +6,13 @@
     <edmx:Diagrams>
       <Diagram DiagramId="c15df2355b0e457f9b6bde1b64624262" Name="Diagram1">
         <EntityTypeShape EntityType="InventoryModel.contratos" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryModel.Maquinas" Width="1.5" PointX="0.75" PointY="4.25" IsExpanded="true" />
         <EntityTypeShape EntityType="InventoryModel.Tiendas" Width="1.5" PointX="5.625" PointY="8.125" IsExpanded="true" />
-        <AssociationConnector Association="InventoryModel.FK__contratos__Serie__2D27B809" ManuallyRouted="false" />
-        <AssociationConnector Association="InventoryModel.FK__Tiendas__SeriePC__276EDEB3" ManuallyRouted="false" />
         <EntityTypeShape EntityType="InventoryModel.sysdiagrams" Width="1.5" PointX="5.375" PointY="0.75" />
         <EntityTypeShape EntityType="InventoryModel.empleado" Width="1.5" PointX="3" PointY="6" />
-        <AssociationConnector Association="InventoryModel.FK__empleado__serieP__72C60C4A" />
+        <EntityTypeShape EntityType="InventoryModel.Maquinas" Width="1.5" PointX="0.75" PointY="4.125" />
+        <AssociationConnector Association="InventoryModel.FK__contratos__Serie__2D27B809" />
+        <AssociationConnector Association="InventoryModel.FK__empleado__serieP__05D8E0BE" />
+        <AssociationConnector Association="InventoryModel.FK__Tiendas__SeriePC__276EDEB3" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

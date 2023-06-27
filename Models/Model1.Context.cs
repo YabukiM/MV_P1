@@ -28,10 +28,10 @@ namespace MV_P1.Models
         }
     
         public virtual DbSet<contratos> contratos { get; set; }
-        public virtual DbSet<Maquinas> Maquinas { get; set; }
         public virtual DbSet<Tiendas> Tiendas { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<empleado> empleado { get; set; }
+        public virtual DbSet<Maquinas> Maquinas { get; set; }
     
         public virtual int sp_agregarTiendas(string deptoTienda, Nullable<int> noTienda, string nombreTienda, string direccionTienda, string seriePC, Nullable<bool> activo)
         {
@@ -252,6 +252,105 @@ namespace MV_P1.Models
                 new ObjectParameter("SeriePC", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_editarEmpleado", no_empParameter, nombreParameter, puestoParameter, seriePCParameter);
+        }
+    
+        public virtual int sp_agregarMaquinas(string contratos, string producto, string descripcion, string seriePC, string destino, string asignada, string estatuss, string nombreUsuarioPuesto, string noCartaCustodia, Nullable<bool> activo)
+        {
+            var contratosParameter = contratos != null ?
+                new ObjectParameter("Contratos", contratos) :
+                new ObjectParameter("Contratos", typeof(string));
+    
+            var productoParameter = producto != null ?
+                new ObjectParameter("Producto", producto) :
+                new ObjectParameter("Producto", typeof(string));
+    
+            var descripcionParameter = descripcion != null ?
+                new ObjectParameter("Descripcion", descripcion) :
+                new ObjectParameter("Descripcion", typeof(string));
+    
+            var seriePCParameter = seriePC != null ?
+                new ObjectParameter("SeriePC", seriePC) :
+                new ObjectParameter("SeriePC", typeof(string));
+    
+            var destinoParameter = destino != null ?
+                new ObjectParameter("Destino", destino) :
+                new ObjectParameter("Destino", typeof(string));
+    
+            var asignadaParameter = asignada != null ?
+                new ObjectParameter("Asignada", asignada) :
+                new ObjectParameter("Asignada", typeof(string));
+    
+            var estatussParameter = estatuss != null ?
+                new ObjectParameter("Estatuss", estatuss) :
+                new ObjectParameter("Estatuss", typeof(string));
+    
+            var nombreUsuarioPuestoParameter = nombreUsuarioPuesto != null ?
+                new ObjectParameter("NombreUsuarioPuesto", nombreUsuarioPuesto) :
+                new ObjectParameter("NombreUsuarioPuesto", typeof(string));
+    
+            var noCartaCustodiaParameter = noCartaCustodia != null ?
+                new ObjectParameter("NoCartaCustodia", noCartaCustodia) :
+                new ObjectParameter("NoCartaCustodia", typeof(string));
+    
+            var activoParameter = activo.HasValue ?
+                new ObjectParameter("Activo", activo) :
+                new ObjectParameter("Activo", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_agregarMaquinas", contratosParameter, productoParameter, descripcionParameter, seriePCParameter, destinoParameter, asignadaParameter, estatussParameter, nombreUsuarioPuestoParameter, noCartaCustodiaParameter, activoParameter);
+        }
+    
+        public virtual int sp_eliminar_maquinas(Nullable<int> conteo)
+        {
+            var conteoParameter = conteo.HasValue ?
+                new ObjectParameter("Conteo", conteo) :
+                new ObjectParameter("Conteo", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_eliminar_maquinas", conteoParameter);
+        }
+    
+        public virtual int sp_editarMaquinas(Nullable<int> conteo, string contratos, string producto, string descripcion, string seriePC, string destino, string asignada, string estatuss, string nombreUsuarioPuesto, string noCartaCustodia)
+        {
+            var conteoParameter = conteo.HasValue ?
+                new ObjectParameter("Conteo", conteo) :
+                new ObjectParameter("Conteo", typeof(int));
+    
+            var contratosParameter = contratos != null ?
+                new ObjectParameter("Contratos", contratos) :
+                new ObjectParameter("Contratos", typeof(string));
+    
+            var productoParameter = producto != null ?
+                new ObjectParameter("Producto", producto) :
+                new ObjectParameter("Producto", typeof(string));
+    
+            var descripcionParameter = descripcion != null ?
+                new ObjectParameter("Descripcion", descripcion) :
+                new ObjectParameter("Descripcion", typeof(string));
+    
+            var seriePCParameter = seriePC != null ?
+                new ObjectParameter("SeriePC", seriePC) :
+                new ObjectParameter("SeriePC", typeof(string));
+    
+            var destinoParameter = destino != null ?
+                new ObjectParameter("Destino", destino) :
+                new ObjectParameter("Destino", typeof(string));
+    
+            var asignadaParameter = asignada != null ?
+                new ObjectParameter("Asignada", asignada) :
+                new ObjectParameter("Asignada", typeof(string));
+    
+            var estatussParameter = estatuss != null ?
+                new ObjectParameter("Estatuss", estatuss) :
+                new ObjectParameter("Estatuss", typeof(string));
+    
+            var nombreUsuarioPuestoParameter = nombreUsuarioPuesto != null ?
+                new ObjectParameter("NombreUsuarioPuesto", nombreUsuarioPuesto) :
+                new ObjectParameter("NombreUsuarioPuesto", typeof(string));
+    
+            var noCartaCustodiaParameter = noCartaCustodia != null ?
+                new ObjectParameter("NoCartaCustodia", noCartaCustodia) :
+                new ObjectParameter("NoCartaCustodia", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_editarMaquinas", conteoParameter, contratosParameter, productoParameter, descripcionParameter, seriePCParameter, destinoParameter, asignadaParameter, estatussParameter, nombreUsuarioPuestoParameter, noCartaCustodiaParameter);
         }
     }
 }

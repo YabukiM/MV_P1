@@ -1,10 +1,4 @@
-﻿
-@{
-    ViewBag.Title = "FormularioMaquinas";
-}
-
-<h2>FormularioMaquinas</h2>
-
+﻿<h2>FormularioMaquinas</h2>
 <script>
     var urlGuardarMaquina = '@Url.Action("guardarMaquina", "Maquinas")';
 </script>
@@ -57,6 +51,18 @@
         else
         {
             <input type="text" id="SeriePC" name="SeriePC" class="form-control" />
+        }
+    </div>
+
+    <div class="col-md-3">
+        <label>Destino</label>
+        @if (ViewBag.Maquinas != null)
+        {
+            <input type="text" id="Destino" name="Destino" class="form-control" value="@ViewBag.Maquinas.Destino" />
+        }
+        else
+        {
+            <input type="text" id="Destino" name="Destino" class="form-control" />
         }
     </div>
 
