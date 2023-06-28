@@ -9,7 +9,7 @@ namespace MV_P1.Controllers
 {
     public class MaquinasController : Controller
     {
-        InventoryEntities db = new InventoryEntities();
+        InventoryEntities2 db = new InventoryEntities2();
 
         public ActionResult DatosMaquinas()
         {
@@ -23,7 +23,7 @@ namespace MV_P1.Controllers
             if (Conteo != null)
             {
                 int id = int.Parse(Conteo);
-                var maquinas = db.Maquinas.Where(x => x.Activo == true).ToList();
+                var maquinas = db.Maquinas.Where(x => x.Conteo == id).FirstOrDefault();
                 ViewBag.Maquinas = maquinas;
             }
             return View();
@@ -34,6 +34,9 @@ namespace MV_P1.Controllers
             if (Conteo != null)
             {
                 db.sp_editarMaquinas(Conteo, Contratos, Producto, Descripcion, SeriePC, Destino, Asignada, Estatuss, NombreUsuarioPuesto, NoCartaCustodia);
+
+
+
             }
             else
             {

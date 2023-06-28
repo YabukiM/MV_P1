@@ -14,6 +14,7 @@ namespace MV_P1.Models
     
     public partial class contratos
     {
+        public int id_Contrato { get; set; }
         public string producto_contrato { get; set; }
         public string descripcion { get; set; }
         public string serie { get; set; }

@@ -3,30 +3,30 @@ CREATE DATABASE Inventory;
 USE Inventory;
 
 CREATE TABLE Maquinas (
-  Conteo INT identity (1,1) NOT NULL,
+  Conteo INT identity (1,1),
   Contratos VARCHAR(50) unique,
-  Producto VARCHAR(50) NOT NULL,
+  Producto VARCHAR(50) ,
   Descripcion VARCHAR(100),
-  SeriePC VARCHAR(50) NOT NULL unique,
+  SeriePC VARCHAR(50) unique,
   Destino VARCHAR(50),
   Asignada VARCHAR(50),
   Estatuss VARCHAR(50),
+  Activo BIT,
   NombreUsuarioPuesto VARCHAR(50),
   NoCartaCustodia VARCHAR(50),
-  PRIMARY KEY (SeriePC)
+  PRIMARY KEY (Conteo)
 );
-ALTER TABLE Maquinas ADD Activo BIT
 
 CREATE TABLE Tiendas (
   ID_Tienda int primary key identity (1,1),
   DeptoTienda VARCHAR(50),
   NoTienda INT ,
   NombreTienda VARCHAR(50),
+  Activo BIT,
   DireccionTienda VARCHAR(100) ,
   SeriePC varchar(50), 
-  foreign key (SeriePC)references Maquinas(SeriePC)
+  foreign key (ID_Tienda)references Maquinas(Conteo)
 );
-ALTER TABLE Tiendas ADD Activo BIT
 
 
 create table empleado(
@@ -34,12 +34,13 @@ create table empleado(
 	nombre varchar (30),
 	seriePC varchar(50), 
 	puesto varchar(30),
-	foreign key (SeriePC) references Maquinas(SeriePC)
+	Activo BIT,
+	foreign key (No_emp) references Maquinas(Conteo)
 );
-ALTER TABLE empleado ADD Activo BIT
 
 create table contratos (
-	producto_contrato varchar(30) primary key not null,
+	id_Contrato int primary key not null,
+	producto_contrato varchar(30) unique,
 	descripcion varchar(30),
 	serie varchar(30),
 	destino varchar(30),
@@ -50,10 +51,9 @@ create table contratos (
 	fecha_pedido  varchar(30),
 	SeriePC  VARCHAR(50), 
 	activo bit,
-	foreign key (seriePC) references Maquinas(seriePC)
+	foreign key (id_Contrato) references Maquinas(Conteo)
 
 )
-ALTER TABLE contratos ADD Activo BIT
 
 
 --sfadsfdfsa

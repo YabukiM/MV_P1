@@ -16,7 +16,7 @@ namespace MV_P1.Models
     {
         public int No_emp { get; set; }
         public string nombre { get; set; }
-        public string SeriePC { get; set; }
+        public string seriePC { get; set; }
         public string puesto { get; set; }
         public Nullable<bool> Activo { get; set; }
     

@@ -4,15 +4,14 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="c15df2355b0e457f9b6bde1b64624262" Name="Diagram1">
+      <Diagram DiagramId="62e71cc59d664837b05e635af07c90d6" Name="Diagram1">
         <EntityTypeShape EntityType="InventoryModel.contratos" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryModel.Tiendas" Width="1.5" PointX="5.625" PointY="8.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryModel.sysdiagrams" Width="1.5" PointX="5.375" PointY="0.75" />
-        <EntityTypeShape EntityType="InventoryModel.empleado" Width="1.5" PointX="3" PointY="6" />
-        <EntityTypeShape EntityType="InventoryModel.Maquinas" Width="1.5" PointX="0.75" PointY="4.125" />
-        <AssociationConnector Association="InventoryModel.FK__contratos__Serie__2D27B809" />
-        <AssociationConnector Association="InventoryModel.FK__empleado__serieP__05D8E0BE" />
-        <AssociationConnector Association="InventoryModel.FK__Tiendas__SeriePC__276EDEB3" />
+        <EntityTypeShape EntityType="InventoryModel.empleado" Width="1.5" PointX="3" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.Maquinas" Width="1.5" PointX="0.75" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.Tiendas" Width="1.5" PointX="3" PointY="8.5" IsExpanded="true" />
+        <AssociationConnector Association="InventoryModel.FK__contratos__id_Co__2E1BDC42" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK__empleado__No_emp__2A4B4B5E" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK__Tiendas__ID_Tien__276EDEB3" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

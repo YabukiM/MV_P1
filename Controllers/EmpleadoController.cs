@@ -10,7 +10,7 @@ namespace MV_P1.Controllers
     public class EmpleadoController : Controller
     {
         
-        InventoryEntities db = new InventoryEntities ();
+        InventoryEntities2 db = new InventoryEntities2();
 
         public ActionResult DatosEmpleados()
         {
@@ -41,7 +41,7 @@ namespace MV_P1.Controllers
             }
             else
             {
-                db.sp_agregar_emplado(nombre,  puesto, seriePC, true);
+                db.sp_agregar_emplado(nombre, seriePC, puesto, true);
             }
             return Json("");
         }

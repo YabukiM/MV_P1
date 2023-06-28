@@ -3,12 +3,13 @@
 <a href="~/Tiendas/ForumularioTiendas" type="button" class="btn btn-primary">Nueva Tienda</a>
 <table class="table table-hover">
     <tr>
+        <th>Tienda</th>
         <th>Tienda Departamento</th>
         <th>No. Tienda</th>
         <th>Nombre Tienda</th>
         <th>Direccion Tienda</th>
         <th>Serie PC</th>
-       
+
     </tr>
     @foreach (var item in Model)
     {
@@ -18,7 +19,7 @@
             <td>@item.NoTienda</td>
             <td>@item.NombreTienda</td>
             <td>@item.DireccionTienda</td>
-            <td>@item.Maquinas.SeriePC</td>
+                <td>@item.SeriePC</td>
 
             <td><a href="~/Tiendas/ForumularioTiendas?ID_Tienda=@item.ID_Tienda" class="btn btn-info">Editar</a></td>
             <td><a href="~/Tiendas/Eliminar?ID_Tienda=@item.ID_Tienda" class="btn btn-warning">Baja</a></td>

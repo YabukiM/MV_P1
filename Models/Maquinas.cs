@@ -14,14 +14,6 @@ namespace MV_P1.Models
     
     public partial class Maquinas
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Maquinas()
-        {
-            this.contratos1 = new HashSet<contratos>();
-            this.empleado = new HashSet<empleado>();
-            this.Tiendas = new HashSet<Tiendas>();
-        }
-    
         public int Conteo { get; set; }
         public string Contratos { get; set; }
         public string Producto { get; set; }
@@ -30,15 +22,12 @@ namespace MV_P1.Models
         public string Destino { get; set; }
         public string Asignada { get; set; }
         public string Estatuss { get; set; }
+        public Nullable<bool> Activo { get; set; }
         public string NombreUsuarioPuesto { get; set; }
         public string NoCartaCustodia { get; set; }
-        public Nullable<bool> Activo { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<contratos> contratos1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<empleado> empleado { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Tiendas> Tiendas { get; set; }
+        public virtual contratos contratos1 { get; set; }
+        public virtual empleado empleado { get; set; }
+        public virtual Tiendas Tiendas { get; set; }
     }
 }

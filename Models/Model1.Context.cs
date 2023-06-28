@@ -15,10 +15,10 @@ namespace MV_P1.Models
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class InventoryEntities : DbContext
+    public partial class InventoryEntities2 : DbContext
     {
-        public InventoryEntities()
-            : base("name=InventoryEntities")
+        public InventoryEntities2()
+            : base("name=InventoryEntities2")
         {
         }
     
@@ -28,230 +28,29 @@ namespace MV_P1.Models
         }
     
         public virtual DbSet<contratos> contratos { get; set; }
-        public virtual DbSet<Tiendas> Tiendas { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<empleado> empleado { get; set; }
         public virtual DbSet<Maquinas> Maquinas { get; set; }
+        public virtual DbSet<Tiendas> Tiendas { get; set; }
     
-        public virtual int sp_agregarTiendas(string deptoTienda, Nullable<int> noTienda, string nombreTienda, string direccionTienda, string seriePC, Nullable<bool> activo)
-        {
-            var deptoTiendaParameter = deptoTienda != null ?
-                new ObjectParameter("DeptoTienda", deptoTienda) :
-                new ObjectParameter("DeptoTienda", typeof(string));
-    
-            var noTiendaParameter = noTienda.HasValue ?
-                new ObjectParameter("NoTienda", noTienda) :
-                new ObjectParameter("NoTienda", typeof(int));
-    
-            var nombreTiendaParameter = nombreTienda != null ?
-                new ObjectParameter("NombreTienda", nombreTienda) :
-                new ObjectParameter("NombreTienda", typeof(string));
-    
-            var direccionTiendaParameter = direccionTienda != null ?
-                new ObjectParameter("DireccionTienda", direccionTienda) :
-                new ObjectParameter("DireccionTienda", typeof(string));
-    
-            var seriePCParameter = seriePC != null ?
-                new ObjectParameter("SeriePC", seriePC) :
-                new ObjectParameter("SeriePC", typeof(string));
-    
-            var activoParameter = activo.HasValue ?
-                new ObjectParameter("activo", activo) :
-                new ObjectParameter("activo", typeof(bool));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_agregarTiendas", deptoTiendaParameter, noTiendaParameter, nombreTiendaParameter, direccionTiendaParameter, seriePCParameter, activoParameter);
-        }
-    
-        public virtual int sp_eliminar_empleado(Nullable<int> no_emp)
-        {
-            var no_empParameter = no_emp.HasValue ?
-                new ObjectParameter("No_emp", no_emp) :
-                new ObjectParameter("No_emp", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_eliminar_empleado", no_empParameter);
-        }
-    
-        public virtual int sp_eliminar_tiendas(Nullable<int> iD_Tienda)
-        {
-            var iD_TiendaParameter = iD_Tienda.HasValue ?
-                new ObjectParameter("ID_Tienda", iD_Tienda) :
-                new ObjectParameter("ID_Tienda", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_eliminar_tiendas", iD_TiendaParameter);
-        }
-    
-        public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            var versionParameter = version.HasValue ?
-                new ObjectParameter("version", version) :
-                new ObjectParameter("version", typeof(int));
-    
-            var definitionParameter = definition != null ?
-                new ObjectParameter("definition", definition) :
-                new ObjectParameter("definition", typeof(byte[]));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_alterdiagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
-        }
-    
-        public virtual int sp_creatediagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            var versionParameter = version.HasValue ?
-                new ObjectParameter("version", version) :
-                new ObjectParameter("version", typeof(int));
-    
-            var definitionParameter = definition != null ?
-                new ObjectParameter("definition", definition) :
-                new ObjectParameter("definition", typeof(byte[]));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_creatediagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
-        }
-    
-        public virtual int sp_dropdiagram(string diagramname, Nullable<int> owner_id)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_dropdiagram", diagramnameParameter, owner_idParameter);
-        }
-    
-        public virtual ObjectResult<sp_helpdiagramdefinition_Result> sp_helpdiagramdefinition(string diagramname, Nullable<int> owner_id)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagramdefinition_Result>("sp_helpdiagramdefinition", diagramnameParameter, owner_idParameter);
-        }
-    
-        public virtual ObjectResult<sp_helpdiagrams_Result> sp_helpdiagrams(string diagramname, Nullable<int> owner_id)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagrams_Result>("sp_helpdiagrams", diagramnameParameter, owner_idParameter);
-        }
-    
-        public virtual int sp_renamediagram(string diagramname, Nullable<int> owner_id, string new_diagramname)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            var new_diagramnameParameter = new_diagramname != null ?
-                new ObjectParameter("new_diagramname", new_diagramname) :
-                new ObjectParameter("new_diagramname", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_renamediagram", diagramnameParameter, owner_idParameter, new_diagramnameParameter);
-        }
-    
-        public virtual int sp_upgraddiagrams()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
-        }
-    
-        public virtual int sp_editarTiendas(Nullable<int> iD_Tienda, string deptoTienda, Nullable<int> noTienda, string nombreTienda, string direccionTienda, string seriePC)
-        {
-            var iD_TiendaParameter = iD_Tienda.HasValue ?
-                new ObjectParameter("ID_Tienda", iD_Tienda) :
-                new ObjectParameter("ID_Tienda", typeof(int));
-    
-            var deptoTiendaParameter = deptoTienda != null ?
-                new ObjectParameter("DeptoTienda", deptoTienda) :
-                new ObjectParameter("DeptoTienda", typeof(string));
-    
-            var noTiendaParameter = noTienda.HasValue ?
-                new ObjectParameter("NoTienda", noTienda) :
-                new ObjectParameter("NoTienda", typeof(int));
-    
-            var nombreTiendaParameter = nombreTienda != null ?
-                new ObjectParameter("NombreTienda", nombreTienda) :
-                new ObjectParameter("NombreTienda", typeof(string));
-    
-            var direccionTiendaParameter = direccionTienda != null ?
-                new ObjectParameter("DireccionTienda", direccionTienda) :
-                new ObjectParameter("DireccionTienda", typeof(string));
-    
-            var seriePCParameter = seriePC != null ?
-                new ObjectParameter("SeriePC", seriePC) :
-                new ObjectParameter("SeriePC", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_editarTiendas", iD_TiendaParameter, deptoTiendaParameter, noTiendaParameter, nombreTiendaParameter, direccionTiendaParameter, seriePCParameter);
-        }
-    
-        public virtual int sp_agregar_emplado(string nombre, string puesto, string seriePC, Nullable<bool> activo)
+        public virtual int sp_agregar_emplado(string nombre, string seriePC, string puesto, Nullable<bool> activo)
         {
             var nombreParameter = nombre != null ?
                 new ObjectParameter("nombre", nombre) :
                 new ObjectParameter("nombre", typeof(string));
-    
-            var puestoParameter = puesto != null ?
-                new ObjectParameter("puesto", puesto) :
-                new ObjectParameter("puesto", typeof(string));
     
             var seriePCParameter = seriePC != null ?
                 new ObjectParameter("seriePC", seriePC) :
                 new ObjectParameter("seriePC", typeof(string));
     
-            var activoParameter = activo.HasValue ?
-                new ObjectParameter("activo", activo) :
-                new ObjectParameter("activo", typeof(bool));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_agregar_emplado", nombreParameter, puestoParameter, seriePCParameter, activoParameter);
-        }
-    
-        public virtual int sp_editarEmpleado(Nullable<int> no_emp, string nombre, string puesto, string seriePC)
-        {
-            var no_empParameter = no_emp.HasValue ?
-                new ObjectParameter("No_emp", no_emp) :
-                new ObjectParameter("No_emp", typeof(int));
-    
-            var nombreParameter = nombre != null ?
-                new ObjectParameter("nombre", nombre) :
-                new ObjectParameter("nombre", typeof(string));
-    
             var puestoParameter = puesto != null ?
                 new ObjectParameter("puesto", puesto) :
                 new ObjectParameter("puesto", typeof(string));
     
-            var seriePCParameter = seriePC != null ?
-                new ObjectParameter("SeriePC", seriePC) :
-                new ObjectParameter("SeriePC", typeof(string));
+            var activoParameter = activo.HasValue ?
+                new ObjectParameter("activo", activo) :
+                new ObjectParameter("activo", typeof(bool));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_editarEmpleado", no_empParameter, nombreParameter, puestoParameter, seriePCParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_agregar_emplado", nombreParameter, seriePCParameter, puestoParameter, activoParameter);
         }
     
         public virtual int sp_agregarMaquinas(string contratos, string producto, string descripcion, string seriePC, string destino, string asignada, string estatuss, string nombreUsuarioPuesto, string noCartaCustodia, Nullable<bool> activo)
@@ -299,6 +98,44 @@ namespace MV_P1.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_agregarMaquinas", contratosParameter, productoParameter, descripcionParameter, seriePCParameter, destinoParameter, asignadaParameter, estatussParameter, nombreUsuarioPuestoParameter, noCartaCustodiaParameter, activoParameter);
         }
     
+        public virtual int sp_agregarTiendas(string deptoTienda, Nullable<int> noTienda, string nombreTienda, string direccionTienda, string seriePC, Nullable<bool> activo)
+        {
+            var deptoTiendaParameter = deptoTienda != null ?
+                new ObjectParameter("DeptoTienda", deptoTienda) :
+                new ObjectParameter("DeptoTienda", typeof(string));
+    
+            var noTiendaParameter = noTienda.HasValue ?
+                new ObjectParameter("NoTienda", noTienda) :
+                new ObjectParameter("NoTienda", typeof(int));
+    
+            var nombreTiendaParameter = nombreTienda != null ?
+                new ObjectParameter("NombreTienda", nombreTienda) :
+                new ObjectParameter("NombreTienda", typeof(string));
+    
+            var direccionTiendaParameter = direccionTienda != null ?
+                new ObjectParameter("DireccionTienda", direccionTienda) :
+                new ObjectParameter("DireccionTienda", typeof(string));
+    
+            var seriePCParameter = seriePC != null ?
+                new ObjectParameter("SeriePC", seriePC) :
+                new ObjectParameter("SeriePC", typeof(string));
+    
+            var activoParameter = activo.HasValue ?
+                new ObjectParameter("activo", activo) :
+                new ObjectParameter("activo", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_agregarTiendas", deptoTiendaParameter, noTiendaParameter, nombreTiendaParameter, direccionTiendaParameter, seriePCParameter, activoParameter);
+        }
+    
+        public virtual int sp_eliminar_empleado(Nullable<int> no_emp)
+        {
+            var no_empParameter = no_emp.HasValue ?
+                new ObjectParameter("No_emp", no_emp) :
+                new ObjectParameter("No_emp", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_eliminar_empleado", no_empParameter);
+        }
+    
         public virtual int sp_eliminar_maquinas(Nullable<int> conteo)
         {
             var conteoParameter = conteo.HasValue ?
@@ -306,6 +143,15 @@ namespace MV_P1.Models
                 new ObjectParameter("Conteo", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_eliminar_maquinas", conteoParameter);
+        }
+    
+        public virtual int sp_eliminar_tiendas(Nullable<int> iD_Tienda)
+        {
+            var iD_TiendaParameter = iD_Tienda.HasValue ?
+                new ObjectParameter("ID_Tienda", iD_Tienda) :
+                new ObjectParameter("ID_Tienda", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_eliminar_tiendas", iD_TiendaParameter);
         }
     
         public virtual int sp_editarMaquinas(Nullable<int> conteo, string contratos, string producto, string descripcion, string seriePC, string destino, string asignada, string estatuss, string nombreUsuarioPuesto, string noCartaCustodia)
@@ -351,6 +197,56 @@ namespace MV_P1.Models
                 new ObjectParameter("NoCartaCustodia", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_editarMaquinas", conteoParameter, contratosParameter, productoParameter, descripcionParameter, seriePCParameter, destinoParameter, asignadaParameter, estatussParameter, nombreUsuarioPuestoParameter, noCartaCustodiaParameter);
+        }
+    
+        public virtual int sp_editarEmpleado(Nullable<int> no_emp, string nombre, string puesto, string seriePC)
+        {
+            var no_empParameter = no_emp.HasValue ?
+                new ObjectParameter("No_emp", no_emp) :
+                new ObjectParameter("No_emp", typeof(int));
+    
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("nombre", nombre) :
+                new ObjectParameter("nombre", typeof(string));
+    
+            var puestoParameter = puesto != null ?
+                new ObjectParameter("puesto", puesto) :
+                new ObjectParameter("puesto", typeof(string));
+    
+            var seriePCParameter = seriePC != null ?
+                new ObjectParameter("seriePC", seriePC) :
+                new ObjectParameter("seriePC", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_editarEmpleado", no_empParameter, nombreParameter, puestoParameter, seriePCParameter);
+        }
+    
+        public virtual int sp_editarTiendas(Nullable<int> iD_Tienda, string deptoTienda, Nullable<int> noTienda, string nombreTienda, string direccionTienda, string seriePC)
+        {
+            var iD_TiendaParameter = iD_Tienda.HasValue ?
+                new ObjectParameter("ID_Tienda", iD_Tienda) :
+                new ObjectParameter("ID_Tienda", typeof(int));
+    
+            var deptoTiendaParameter = deptoTienda != null ?
+                new ObjectParameter("DeptoTienda", deptoTienda) :
+                new ObjectParameter("DeptoTienda", typeof(string));
+    
+            var noTiendaParameter = noTienda.HasValue ?
+                new ObjectParameter("NoTienda", noTienda) :
+                new ObjectParameter("NoTienda", typeof(int));
+    
+            var nombreTiendaParameter = nombreTienda != null ?
+                new ObjectParameter("NombreTienda", nombreTienda) :
+                new ObjectParameter("NombreTienda", typeof(string));
+    
+            var direccionTiendaParameter = direccionTienda != null ?
+                new ObjectParameter("DireccionTienda", direccionTienda) :
+                new ObjectParameter("DireccionTienda", typeof(string));
+    
+            var seriePCParameter = seriePC != null ?
+                new ObjectParameter("SeriePC", seriePC) :
+                new ObjectParameter("SeriePC", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_editarTiendas", iD_TiendaParameter, deptoTiendaParameter, noTiendaParameter, nombreTiendaParameter, direccionTiendaParameter, seriePCParameter);
         }
     }
 }
