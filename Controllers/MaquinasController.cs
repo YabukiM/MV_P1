@@ -45,5 +45,11 @@ namespace MV_P1.Controllers
             return Json("");
         }
 
+        public ActionResult Eliminar(int? Conteo)
+        {
+            db.sp_eliminar_maquinas(Conteo);
+            return RedirectToAction("DatosMaquinas", "Maquinas");
+        }
+
     }
 }
