@@ -9,7 +9,7 @@ namespace MV_P1.Controllers
 {
     public class MaquinasController : Controller
     {
-        InventoryEntities2 db = new InventoryEntities2();
+        InventoryEntities3 db = new InventoryEntities3();
 
         public ActionResult DatosMaquinas()
         {
@@ -36,8 +36,7 @@ namespace MV_P1.Controllers
                 db.sp_editarMaquinas(Conteo, Contratos, Producto, Descripcion, SeriePC, Destino, Asignada, Estatuss, NombreUsuarioPuesto, NoCartaCustodia);
 
 
-
-            }
+                            }
             else
             {
                 db.sp_agregarMaquinas(Contratos, Producto, Descripcion, SeriePC, Destino, Asignada, Estatuss, NombreUsuarioPuesto, NoCartaCustodia, true);

@@ -9,7 +9,7 @@ namespace MV_P1.Controllers
 {
     public class TiendasController : Controller
     {
-        InventoryEntities2 db = new InventoryEntities2();
+        InventoryEntities3 db = new InventoryEntities3();
 
         public ActionResult DatosTiendas()
         {

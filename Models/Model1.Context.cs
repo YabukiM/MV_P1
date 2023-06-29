@@ -15,10 +15,10 @@ namespace MV_P1.Models
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class InventoryEntities2 : DbContext
+    public partial class InventoryEntities3 : DbContext
     {
-        public InventoryEntities2()
-            : base("name=InventoryEntities2")
+        public InventoryEntities3()
+            : base("name=InventoryEntities3")
         {
         }
     
@@ -127,31 +127,25 @@ namespace MV_P1.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_agregarTiendas", deptoTiendaParameter, noTiendaParameter, nombreTiendaParameter, direccionTiendaParameter, seriePCParameter, activoParameter);
         }
     
-        public virtual int sp_eliminar_empleado(Nullable<int> no_emp)
+        public virtual int sp_editarEmpleado(Nullable<int> no_emp, string nombre, string puesto, string seriePC)
         {
             var no_empParameter = no_emp.HasValue ?
                 new ObjectParameter("No_emp", no_emp) :
                 new ObjectParameter("No_emp", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_eliminar_empleado", no_empParameter);
-        }
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("nombre", nombre) :
+                new ObjectParameter("nombre", typeof(string));
     
-        public virtual int sp_eliminar_maquinas(Nullable<int> conteo)
-        {
-            var conteoParameter = conteo.HasValue ?
-                new ObjectParameter("Conteo", conteo) :
-                new ObjectParameter("Conteo", typeof(int));
+            var puestoParameter = puesto != null ?
+                new ObjectParameter("puesto", puesto) :
+                new ObjectParameter("puesto", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_eliminar_maquinas", conteoParameter);
-        }
+            var seriePCParameter = seriePC != null ?
+                new ObjectParameter("seriePC", seriePC) :
+                new ObjectParameter("seriePC", typeof(string));
     
-        public virtual int sp_eliminar_tiendas(Nullable<int> iD_Tienda)
-        {
-            var iD_TiendaParameter = iD_Tienda.HasValue ?
-                new ObjectParameter("ID_Tienda", iD_Tienda) :
-                new ObjectParameter("ID_Tienda", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_eliminar_tiendas", iD_TiendaParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_editarEmpleado", no_empParameter, nombreParameter, puestoParameter, seriePCParameter);
         }
     
         public virtual int sp_editarMaquinas(Nullable<int> conteo, string contratos, string producto, string descripcion, string seriePC, string destino, string asignada, string estatuss, string nombreUsuarioPuesto, string noCartaCustodia)
@@ -199,27 +193,6 @@ namespace MV_P1.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_editarMaquinas", conteoParameter, contratosParameter, productoParameter, descripcionParameter, seriePCParameter, destinoParameter, asignadaParameter, estatussParameter, nombreUsuarioPuestoParameter, noCartaCustodiaParameter);
         }
     
-        public virtual int sp_editarEmpleado(Nullable<int> no_emp, string nombre, string puesto, string seriePC)
-        {
-            var no_empParameter = no_emp.HasValue ?
-                new ObjectParameter("No_emp", no_emp) :
-                new ObjectParameter("No_emp", typeof(int));
-    
-            var nombreParameter = nombre != null ?
-                new ObjectParameter("nombre", nombre) :
-                new ObjectParameter("nombre", typeof(string));
-    
-            var puestoParameter = puesto != null ?
-                new ObjectParameter("puesto", puesto) :
-                new ObjectParameter("puesto", typeof(string));
-    
-            var seriePCParameter = seriePC != null ?
-                new ObjectParameter("seriePC", seriePC) :
-                new ObjectParameter("seriePC", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_editarEmpleado", no_empParameter, nombreParameter, puestoParameter, seriePCParameter);
-        }
-    
         public virtual int sp_editarTiendas(Nullable<int> iD_Tienda, string deptoTienda, Nullable<int> noTienda, string nombreTienda, string direccionTienda, string seriePC)
         {
             var iD_TiendaParameter = iD_Tienda.HasValue ?
@@ -247,6 +220,33 @@ namespace MV_P1.Models
                 new ObjectParameter("SeriePC", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_editarTiendas", iD_TiendaParameter, deptoTiendaParameter, noTiendaParameter, nombreTiendaParameter, direccionTiendaParameter, seriePCParameter);
+        }
+    
+        public virtual int sp_eliminar_empleado(Nullable<int> no_emp)
+        {
+            var no_empParameter = no_emp.HasValue ?
+                new ObjectParameter("No_emp", no_emp) :
+                new ObjectParameter("No_emp", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_eliminar_empleado", no_empParameter);
+        }
+    
+        public virtual int sp_eliminar_maquinas(Nullable<int> conteo)
+        {
+            var conteoParameter = conteo.HasValue ?
+                new ObjectParameter("Conteo", conteo) :
+                new ObjectParameter("Conteo", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_eliminar_maquinas", conteoParameter);
+        }
+    
+        public virtual int sp_eliminar_tiendas(Nullable<int> iD_Tienda)
+        {
+            var iD_TiendaParameter = iD_Tienda.HasValue ?
+                new ObjectParameter("ID_Tienda", iD_Tienda) :
+                new ObjectParameter("ID_Tienda", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_eliminar_tiendas", iD_TiendaParameter);
         }
     }
 }
