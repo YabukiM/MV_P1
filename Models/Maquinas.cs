@@ -17,9 +17,9 @@ namespace MV_P1.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Maquinas()
         {
-            this.contratos1 = new HashSet<contratos>();
             this.empleado = new HashSet<empleado>();
             this.Tiendas = new HashSet<Tiendas>();
+            this.contra = new HashSet<contra>();
         }
     
         public int Conteo { get; set; }
@@ -35,10 +35,10 @@ namespace MV_P1.Models
         public string NoCartaCustodia { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<contratos> contratos1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<empleado> empleado { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tiendas> Tiendas { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<contra> contra { get; set; }
     }
 }

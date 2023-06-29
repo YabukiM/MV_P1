@@ -12,7 +12,7 @@ namespace MV_P1.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class contratos
+    public partial class contra
     {
         public int id_Contrato { get; set; }
         public string producto_contrato { get; set; }

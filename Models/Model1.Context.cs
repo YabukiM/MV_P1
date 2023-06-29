@@ -27,10 +27,10 @@ namespace MV_P1.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<contratos> contratos { get; set; }
         public virtual DbSet<empleado> empleado { get; set; }
         public virtual DbSet<Maquinas> Maquinas { get; set; }
         public virtual DbSet<Tiendas> Tiendas { get; set; }
+        public virtual DbSet<contra> contra { get; set; }
     
         public virtual int sp_agregar_emplado(string nombre, string seriePC, string puesto, Nullable<bool> activo)
         {

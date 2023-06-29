@@ -5,13 +5,13 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="b66b215612d5428fb40fe2efa246e106" Name="Diagram1">
-        <EntityTypeShape EntityType="InventoryModel.contratos" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="InventoryModel.empleado" Width="1.5" PointX="3" PointY="5.625" IsExpanded="true" />
         <EntityTypeShape EntityType="InventoryModel.Maquinas" Width="1.5" PointX="0.75" PointY="4.375" IsExpanded="true" />
         <EntityTypeShape EntityType="InventoryModel.Tiendas" Width="1.5" PointX="3" PointY="8.5" IsExpanded="true" />
-        <AssociationConnector Association="InventoryModel.FK__contratos__Serie__2D27B809" ManuallyRouted="false" />
         <AssociationConnector Association="InventoryModel.FK__empleado__serieP__29572725" ManuallyRouted="false" />
         <AssociationConnector Association="InventoryModel.FK__Tiendas__SeriePC__267ABA7A" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="InventoryModel.contra" Width="1.5" PointX="3" PointY="0.75" />
+        <AssociationConnector Association="InventoryModel.FK__contra__SeriePC__398D8EEE" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

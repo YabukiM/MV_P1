@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "DatosContratos";
+}
+
+<h2>DatosContratos</h2>
+
+
+<a href="~/Contratos/FormularioContratos" type="button" class="btn btn-primary">Nuevo Contrato</a>
+
+
+<table class="table table-hover">
+    <tr>
+        <th>ID</th>
+        <th>producto_contrato</th>
+        <th>descripcion</th>
+        <th>serie</th>
+        <th>destino</th>
+        <th>comentarios</th>
+        <th>fecha_surtido</th>
+        <th>recibio</th>
+        <th>Folio_pedido</th>
+        <th>fecha_pedido</th>
+        <th>SeriePC</th>
+
+
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.id_Contrato</td>
+            <td>@item.producto_contrato</td>
+            <td>@item.descripcion</td>
+            <td>@item.serie</td>
+            <td>@item.destino</td>
+            <td>@item.comentarios</td>
+            <td>@item.fecha_surtido</td>
+            <td>@item.recibio</td>
+            <td>@item.Folio_pedido</td>
+            <td>@item.fecha_pedido</td>
+            <td>@item.SeriePC</td>
+
+            <td><a href="~/Contratos/FormularioContratos?Conteo=@item.Conteo" class="btn btn-info">Editar</a></td>
+            <td><a href="~/Contratos/Eliminar?id_Contrato=@item.id_Contrato" class="btn btn-warning">Baja</a></td>
+        </tr>
+    }
+</table>

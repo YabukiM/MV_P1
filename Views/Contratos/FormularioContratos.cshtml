@@ -1,0 +1,171 @@
+﻿
+@{
+    ViewBag.Title = "FormularioContratos";
+}
+
+<h2>FormularioContratos</h2>
+
+<script>
+
+    var urlGuardarContrato = '@Url.Action("guardarContratos", "contra")';
+
+</script>
+
+<script src="~/Scripts/guardarContratos.js"></script>
+
+<div class="row">
+    <div class="col-md-3">
+        <label>Producto</label>
+        @if (ViewBag.contra != null)
+        {
+            <input type="text" id="producto_contrato" name="producto_contrato" class="form-control" value="@ViewBag.contra.producto_contrato" />
+        }
+        else
+        {
+            <input type="text" id="producto_contrato" name="producto_contrato" class="form-control" />
+        }
+    </div>
+
+
+    <div class="col-md-3">
+        <label>descripcion</label>
+        @if (ViewBag.contra != null)
+        {
+            <input type="text" id="descripcion" name="descripcion" class="form-control" value="@ViewBag.contra.descripcion" />
+        }
+        else
+        {
+            <input type="text" id="descripcion" name="descripcion" class="form-control" />
+        }
+    </div>
+
+    <div class="col-md-3">
+        <label>serie</label>
+        @if (ViewBag.contra != null)
+        {
+            <input type="text" id="serie" name="serie" class="form-control" value="@ViewBag.contra.serie" />
+        }
+        else
+        {
+            <input type="text" id="serie" name="serie" class="form-control" />
+        }
+    </div>
+
+
+    <div class="col-md-3">
+        <label>destino</label>
+        @if (ViewBag.contra != null)
+        {
+            <input type="text" id="destino" name="destino" class="form-control" value="@ViewBag.contra.destino" />
+        }
+        else
+        {
+            <input type="text" id="destino" name="destino" class="form-control" />
+        }
+    </div>
+
+
+    <div class="col-md-3">
+        <label>comentarios</label>
+        @if (ViewBag.contra != null)
+        {
+            <input type="text" id="comentarios" name="comentarios" class="form-control" value="@ViewBag.contra.comentarios" />
+        }
+        else
+        {
+            <input type="text" id="comentarios" name="comentarios" class="form-control" />
+        }
+    </div>
+
+
+    <div class="col-md-3">
+        <label>fecha_surtido</label>
+        @if (ViewBag.contra != null)
+        {
+            <input type="date" id="fecha_surtido" name="fecha_surtido" class="form-control" value="@((ViewBag.contra.fecha_surtido != null) ? ViewBag.contra.fecha_surtido.ToString("yyyy-MM-dd") : string.Empty)" />
+        }
+        else
+        {
+            <input type="date" id="fecha_surtido" name="fecha_surtido" class="form-control" />
+        }
+    </div>
+
+
+
+    <div class="col-md-3">
+        <label>recibio</label>
+        @if (ViewBag.contra != null)
+        {
+            <input type="text" id="recibio" name="recibio" class="form-control" value="@ViewBag.contra.recibio" />
+        }
+        else
+        {
+            <input type="text" id="recibio" name="recibio" class="form-control" />
+        }
+    </div>
+
+
+    <div class="col-md-3">
+        <label>Folio_pedido</label>
+        @if (ViewBag.contra != null)
+        {
+            <input type="text" id="Folio_pedido" name="Folio_pedido" class="form-control" value="@ViewBag.contra.Folio_pedido" />
+        }
+        else
+        {
+            <input type="text" id="Folio_pedido" name="Folio_pedido" class="form-control" />
+        }
+    </div>
+
+    <div class="col-md-3">
+        <label>fecha_pedido</label>
+        @if (ViewBag.contra != null)
+        {
+            <input type="text" id="fecha_pedido" name="fecha_pedido" class="form-control" value="@ViewBag.contra.fecha_pedido" />
+        }
+        else
+        {
+            <input type="text" id="fecha_pedido" name="fecha_pedido" class="form-control" />
+        }
+    </div>
+
+
+
+    <label>Serie PC</label>
+    <select class="form-select mb-md-3" id="SeriePC" name="SeriePC">
+        <option value="0"> Seleccionar </option>
+        @foreach (var item in ViewBag.Maquinas)
+        {
+
+            if (ViewBag.contra != null)
+            {
+
+                if (ViewBag.contra.SeriePC == item.SeriePC)
+                {
+                    <option value="@item.SeriePC" selected>@item.SeriePC</option>
+                }
+
+                else
+                {
+                    <option value="@item.SeriePC">@item.SeriePC</option>
+                }
+
+            }
+            else
+            {
+                <option value="@item.SeriePC">@item.SeriePC</option>
+            }
+
+        }
+    </select>
+
+
+</div>
+
+<br />
+<div class="row">
+    <div class="col-md-2">
+        <a href="javascript:guardarContratos()" class="btn btn-success">Alta</a>
+    </div>
+</div>
+

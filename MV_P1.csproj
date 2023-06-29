@@ -131,6 +131,7 @@
     <Compile Include="App_Start\BundleConfig2.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ContratosController.cs" />
     <Compile Include="Controllers\EmpleadoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MaquinasController.cs" />
@@ -139,7 +140,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\contratos.cs">
+    <Compile Include="Models\contra.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\empleado.cs">
@@ -197,6 +198,7 @@
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\guardarContratos.js" />
     <Content Include="Scripts\guardarempleado.js" />
     <Content Include="Scripts\guardarMaquina.js" />
     <Content Include="Scripts\guardarTienda.js" />
@@ -2284,6 +2286,8 @@
     <Content Include="Views\Maquinas\FormularioMaquinas.cshtml" />
     <Content Include="Views\Empleado\DatosEmpleados.cshtml" />
     <Content Include="Views\Empleado\FormularioEmpleado.cshtml" />
+    <Content Include="Views\Contratos\DatosContratos.cshtml" />
+    <Content Include="Views\Contratos\FormularioContratos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
