@@ -11,7 +11,7 @@
         <AssociationConnector Association="InventoryModel.FK__empleado__serieP__29572725" ManuallyRouted="false" />
         <AssociationConnector Association="InventoryModel.FK__Tiendas__SeriePC__267ABA7A" ManuallyRouted="false" />
         <EntityTypeShape EntityType="InventoryModel.contra" Width="1.5" PointX="3" PointY="0.75" />
-        <AssociationConnector Association="InventoryModel.FK__contra__SeriePC__5070F446" />
+        <AssociationConnector Association="InventoryModel.FK__contra__SeriePC__5535A963" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -32,7 +32,7 @@ namespace MV_P1.Controllers
         }
 
 
-        public JsonResult guardarContratos(int? id_Contrato, string producto_contrato, string descripcion, string serie, string destino, string comentarios, DateTime? fecha_surtido, string recibio, int? Folio_pedido , string fecha_pedido, string SeriePC)
+        public JsonResult guardarContratos(int? id_Contrato, string producto_contrato, string descripcion, string serie, string destino, string comentarios, DateTime? fecha_surtido, string recibio, int? Folio_pedido , DateTime? fecha_pedido, string SeriePC)
         {
             if (id_Contrato != null)
             {

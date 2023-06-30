@@ -11,25 +11,12 @@ namespace MV_P1.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.Text.RegularExpressions;
-
+    
     public partial class empleado
     {
         public int No_emp { get; set; }
-        [Required(ErrorMessage = "El nombre es obligatorio.")]
-        [StringLength(30, ErrorMessage = "El nombre no puede tener más de 30 caracteres.")]
-        [RegularExpression(@"^[a-zA-Z0-9 ]+$", ErrorMessage = "El nombre solo puede contener letras, números y espacios.")]
         public string nombre { get; set; }
-
-        [Required(ErrorMessage = "La serie de PC es obligatoria.")]
-        [StringLength(50, ErrorMessage = "La serie de PC no puede tener más de 50 caracteres.")]
-        [RegularExpression(@"^[a-zA-Z0-9]+$", ErrorMessage = "La serie de PC solo puede contener letras y números.")]
         public string seriePC { get; set; }
-
-        [Required(ErrorMessage = "El puesto es obligatorio.")]
-        [StringLength(30, ErrorMessage = "El puesto no puede tener más de 30 caracteres.")]
-        [RegularExpression(@"^[a-zA-Z0-9 ]+$", ErrorMessage = "El puesto solo puede contener letras, números y espacios.")]
         public string puesto { get; set; }
         public Nullable<bool> Activo { get; set; }
     

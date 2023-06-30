@@ -12,7 +12,8 @@
         <label>Contratos</label>
         @if (ViewBag.Maquinas != null)
         {
-            <input type="text" id="Contratos" name="Contratos" class="form-control" value="@ViewBag.Maquinas.Contratos" />
+            <input type="text" id="Contratos" name="Contratos" class="form-control" pattern="^[a-zA-Z0-9\s]+$" value = "@ViewBag.Maquinas.Contratos" required oninvalid="setCustomValidity('El campo Contratos no acepta caracteres especiales o no tiene el formato correcto.')" oninput="setCustomValidity('')">
+             
         }
         else
         {

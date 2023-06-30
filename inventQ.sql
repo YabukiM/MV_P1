@@ -38,7 +38,7 @@ CREATE TABLE empleado (
 );
 
 CREATE TABLE contra (
-  id_Contrato INT PRIMARY KEY NOT NULL,
+  id_Contrato INT PRIMARY KEY identity (1,1) NOT NULL,
   producto_contrato VARCHAR(30) UNIQUE,
   descripcion VARCHAR(30),
   serie VARCHAR(30),
@@ -47,7 +47,7 @@ CREATE TABLE contra (
   fecha_surtido DATE,
   recibio VARCHAR(30),
   Folio_pedido INT,
-  fecha_pedido VARCHAR(30),
+  fecha_pedido date,
   SeriePC VARCHAR(50),
   activo BIT,
   FOREIGN KEY (SeriePC) REFERENCES Maquinas(SeriePC)

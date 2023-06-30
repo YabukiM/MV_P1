@@ -156,7 +156,7 @@ CREATE PROCEDURE sp_guardar_contrato
    @fecha_surtido DATE,
    @recibio VARCHAR(30),
    @Folio_pedido INT,
-   @fecha_pedido VARCHAR(30),
+   @fecha_pedido date,
    @SeriePC VARCHAR(50),
    @activo BIT
 )
@@ -180,7 +180,7 @@ CREATE PROCEDURE sp_editarContrato
    @fecha_surtido DATE,
    @recibio VARCHAR(30),
    @Folio_pedido INT,
-   @fecha_pedido VARCHAR(30),
+   @fecha_pedido date,
    @SeriePC VARCHAR(50)
 )
 AS 

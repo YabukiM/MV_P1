@@ -23,7 +23,7 @@ namespace MV_P1.Models
         public Nullable<System.DateTime> fecha_surtido { get; set; }
         public string recibio { get; set; }
         public Nullable<int> Folio_pedido { get; set; }
-        public string fecha_pedido { get; set; }
+        public Nullable<System.DateTime> fecha_pedido { get; set; }
         public string SeriePC { get; set; }
         public Nullable<bool> activo { get; set; }
     
