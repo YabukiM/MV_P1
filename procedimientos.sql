@@ -211,3 +211,4 @@ SET activo = 0
 WHERE id_Contrato = @id_Contrato
 END
 
+KFGHJ
