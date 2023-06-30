@@ -9,7 +9,7 @@
           <Key>
             <PropertyRef Name="id_Contrato" />
           </Key>
-          <Property Name="id_Contrato" Type="int" Nullable="false" />
+          <Property Name="id_Contrato" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="producto_contrato" Type="varchar" MaxLength="30" />
           <Property Name="descripcion" Type="varchar" MaxLength="30" />
           <Property Name="serie" Type="varchar" MaxLength="30" />
@@ -60,7 +60,7 @@
           <Property Name="DireccionTienda" Type="varchar" MaxLength="100" />
           <Property Name="SeriePC" Type="varchar" MaxLength="50" />
         </EntityType>
-        <Association Name="FK__contra__SeriePC__398D8EEE">
+        <Association Name="FK__contra__SeriePC__5070F446">
           <End Role="Maquinas" Type="Self.Maquinas" Multiplicity="0..1" />
           <End Role="contra" Type="Self.contra" Multiplicity="*" />
           <ReferentialConstraint>
@@ -122,6 +122,19 @@
           <Parameter Name="SeriePC" Type="varchar" Mode="In" />
           <Parameter Name="activo" Type="bit" Mode="In" />
         </Function>
+        <Function Name="sp_editarContrato" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_Contrato" Type="int" Mode="In" />
+          <Parameter Name="producto_contrato" Type="varchar" Mode="In" />
+          <Parameter Name="descripcion" Type="varchar" Mode="In" />
+          <Parameter Name="serie" Type="varchar" Mode="In" />
+          <Parameter Name="destino" Type="varchar" Mode="In" />
+          <Parameter Name="comentarios" Type="varchar" Mode="In" />
+          <Parameter Name="fecha_surtido" Type="date" Mode="In" />
+          <Parameter Name="recibio" Type="varchar" Mode="In" />
+          <Parameter Name="Folio_pedido" Type="int" Mode="In" />
+          <Parameter Name="fecha_pedido" Type="varchar" Mode="In" />
+          <Parameter Name="SeriePC" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="sp_editarEmpleado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="No_emp" Type="int" Mode="In" />
           <Parameter Name="nombre" Type="varchar" Mode="In" />
@@ -148,6 +161,9 @@
           <Parameter Name="DireccionTienda" Type="varchar" Mode="In" />
           <Parameter Name="SeriePC" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="sp_eliminar_contrato" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_Contrato" Type="int" Mode="In" />
+        </Function>
         <Function Name="sp_eliminar_empleado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="No_emp" Type="int" Mode="In" />
         </Function>
@@ -157,12 +173,25 @@
         <Function Name="sp_eliminar_tiendas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ID_Tienda" Type="int" Mode="In" />
         </Function>
+        <Function Name="sp_guardar_contrato" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="producto_contrato" Type="varchar" Mode="In" />
+          <Parameter Name="descripcion" Type="varchar" Mode="In" />
+          <Parameter Name="serie" Type="varchar" Mode="In" />
+          <Parameter Name="destino" Type="varchar" Mode="In" />
+          <Parameter Name="comentarios" Type="varchar" Mode="In" />
+          <Parameter Name="fecha_surtido" Type="date" Mode="In" />
+          <Parameter Name="recibio" Type="varchar" Mode="In" />
+          <Parameter Name="Folio_pedido" Type="int" Mode="In" />
+          <Parameter Name="fecha_pedido" Type="varchar" Mode="In" />
+          <Parameter Name="SeriePC" Type="varchar" Mode="In" />
+          <Parameter Name="activo" Type="bit" Mode="In" />
+        </Function>
         <EntityContainer Name="InventoryModelStoreContainer">
           <EntitySet Name="contra" EntityType="Self.contra" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="empleado" EntityType="Self.empleado" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Maquinas" EntityType="Self.Maquinas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tiendas" EntityType="Self.Tiendas" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__contra__SeriePC__398D8EEE" Association="Self.FK__contra__SeriePC__398D8EEE">
+          <AssociationSet Name="FK__contra__SeriePC__5070F446" Association="Self.FK__contra__SeriePC__5070F446">
             <End Role="Maquinas" EntitySet="Maquinas" />
             <End Role="contra" EntitySet="contra" />
           </AssociationSet>
@@ -207,7 +236,7 @@
           <Property Name="NoCartaCustodia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="empleado" Relationship="Self.FK__empleado__serieP__29572725" FromRole="Maquinas" ToRole="empleado" />
           <NavigationProperty Name="Tiendas" Relationship="Self.FK__Tiendas__SeriePC__267ABA7A" FromRole="Maquinas" ToRole="Tiendas" />
-          <NavigationProperty Name="contra" Relationship="InventoryModel.FK__contra__SeriePC__398D8EEE" FromRole="Maquinas" ToRole="contra" />
+          <NavigationProperty Name="contra" Relationship="InventoryModel.FK__contra__SeriePC__5070F446" FromRole="Maquinas" ToRole="contra" />
         </EntityType>
         <EntityType Name="Tiendas">
           <Key>
@@ -319,17 +348,46 @@
           <FunctionImport Name="sp_eliminar_tiendas">
           <Parameter Name="ID_Tienda" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="sp_editarContrato">
+            <Parameter Name="id_Contrato" Mode="In" Type="Int32" />
+            <Parameter Name="producto_contrato" Mode="In" Type="String" />
+            <Parameter Name="descripcion" Mode="In" Type="String" />
+            <Parameter Name="serie" Mode="In" Type="String" />
+            <Parameter Name="destino" Mode="In" Type="String" />
+            <Parameter Name="comentarios" Mode="In" Type="String" />
+            <Parameter Name="fecha_surtido" Mode="In" Type="DateTime" />
+            <Parameter Name="recibio" Mode="In" Type="String" />
+            <Parameter Name="Folio_pedido" Mode="In" Type="Int32" />
+            <Parameter Name="fecha_pedido" Mode="In" Type="String" />
+            <Parameter Name="SeriePC" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_guardar_contrato">
+            <Parameter Name="producto_contrato" Mode="In" Type="String" />
+            <Parameter Name="descripcion" Mode="In" Type="String" />
+            <Parameter Name="serie" Mode="In" Type="String" />
+            <Parameter Name="destino" Mode="In" Type="String" />
+            <Parameter Name="comentarios" Mode="In" Type="String" />
+            <Parameter Name="fecha_surtido" Mode="In" Type="DateTime" />
+            <Parameter Name="recibio" Mode="In" Type="String" />
+            <Parameter Name="Folio_pedido" Mode="In" Type="Int32" />
+            <Parameter Name="fecha_pedido" Mode="In" Type="String" />
+            <Parameter Name="SeriePC" Mode="In" Type="String" />
+            <Parameter Name="activo" Mode="In" Type="Boolean" />
+          </FunctionImport>
           <EntitySet Name="contra" EntityType="InventoryModel.contra" />
-          <AssociationSet Name="FK__contra__SeriePC__398D8EEE" Association="InventoryModel.FK__contra__SeriePC__398D8EEE">
+          <AssociationSet Name="FK__contra__SeriePC__5070F446" Association="InventoryModel.FK__contra__SeriePC__5070F446">
             <End Role="Maquinas" EntitySet="Maquinas" />
             <End Role="contra" EntitySet="contra" />
           </AssociationSet>
+          <FunctionImport Name="sp_eliminar_contrato">
+            <Parameter Name="id_Contrato" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="contra">
           <Key>
             <PropertyRef Name="id_Contrato" />
           </Key>
-          <Property Name="id_Contrato" Type="Int32" Nullable="false" />
+          <Property Name="id_Contrato" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="producto_contrato" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="descripcion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="serie" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
@@ -341,9 +399,9 @@
           <Property Name="fecha_pedido" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="SeriePC" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="activo" Type="Boolean" />
-          <NavigationProperty Name="Maquinas" Relationship="InventoryModel.FK__contra__SeriePC__398D8EEE" FromRole="contra" ToRole="Maquinas" />
+          <NavigationProperty Name="Maquinas" Relationship="InventoryModel.FK__contra__SeriePC__5070F446" FromRole="contra" ToRole="Maquinas" />
         </EntityType>
-        <Association Name="FK__contra__SeriePC__398D8EEE">
+        <Association Name="FK__contra__SeriePC__5070F446">
           <End Type="InventoryModel.Maquinas" Role="Maquinas" Multiplicity="0..1" />
           <End Type="InventoryModel.contra" Role="contra" Multiplicity="*" />
           <ReferentialConstraint>
@@ -411,6 +469,8 @@
           <FunctionImportMapping FunctionImportName="sp_eliminar_empleado" FunctionName="InventoryModel.Store.sp_eliminar_empleado" />
           <FunctionImportMapping FunctionImportName="sp_eliminar_maquinas" FunctionName="InventoryModel.Store.sp_eliminar_maquinas" />
           <FunctionImportMapping FunctionImportName="sp_eliminar_tiendas" FunctionName="InventoryModel.Store.sp_eliminar_tiendas" />
+          <FunctionImportMapping FunctionImportName="sp_editarContrato" FunctionName="InventoryModel.Store.sp_editarContrato" />
+          <FunctionImportMapping FunctionImportName="sp_guardar_contrato" FunctionName="InventoryModel.Store.sp_guardar_contrato" />
           <EntitySetMapping Name="contra">
             <EntityTypeMapping TypeName="InventoryModel.contra">
               <MappingFragment StoreEntitySet="contra">
@@ -429,6 +489,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_eliminar_contrato" FunctionName="InventoryModel.Store.sp_eliminar_contrato" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -3,57 +3,55 @@ CREATE DATABASE Inventory;
 USE Inventory;
 
 CREATE TABLE Maquinas (
-  Conteo INT identity (1,1),
-  Contratos VARCHAR(50) unique,
-  Producto VARCHAR(50) ,
+  Conteo INT IDENTITY (1,1),
+  Contratos VARCHAR(50) UNIQUE,
+  Producto VARCHAR(50),
   Descripcion VARCHAR(100),
-  SeriePC VARCHAR(50) unique,
+  SeriePC VARCHAR(50) not null,
   Destino VARCHAR(50),
   Asignada VARCHAR(50),
   Estatuss VARCHAR(50),
   Activo BIT,
   NombreUsuarioPuesto VARCHAR(50),
   NoCartaCustodia VARCHAR(50),
-  PRIMARY KEY (Conteo)
+  PRIMARY KEY (SeriePC)
 );
 
 CREATE TABLE Tiendas (
-  ID_Tienda int primary key identity (1,1),
+  ID_Tienda INT PRIMARY KEY IDENTITY (1,1),
   DeptoTienda VARCHAR(50),
-  NoTienda INT ,
+  NoTienda INT,
   NombreTienda VARCHAR(50),
   Activo BIT,
-  DireccionTienda VARCHAR(100) ,
-  SeriePC varchar(50), 
-  foreign key (ID_Tienda)references Maquinas(Conteo)
+  DireccionTienda VARCHAR(100),
+  SeriePC VARCHAR(50),
+  FOREIGN KEY (SeriePC) REFERENCES Maquinas(SeriePC)
 );
 
-
-create table empleado(
-    No_emp int primary key identity (1,1),
-	nombre varchar (30),
-	seriePC varchar(50), 
-	puesto varchar(30),
-	Activo BIT,
-	foreign key (No_emp) references Maquinas(Conteo)
+CREATE TABLE empleado (
+  No_emp INT PRIMARY KEY IDENTITY (1,1),
+  nombre VARCHAR(30),
+  seriePC VARCHAR(50),
+  puesto VARCHAR(30),
+  Activo BIT,
+  FOREIGN KEY (seriePC) REFERENCES Maquinas(SeriePC)
 );
 
-create table contratos (
-	id_Contrato int primary key not null,
-	producto_contrato varchar(30) unique,
-	descripcion varchar(30),
-	serie varchar(30),
-	destino varchar(30),
-	comentarios varchar(30),
-	fecha_surtido date,
-	recibio varchar(30),
-	Folio_pedido int,
-	fecha_pedido  varchar(30),
-	SeriePC  VARCHAR(50), 
-	activo bit,
-	foreign key (id_Contrato) references Maquinas(Conteo)
-
-)
+CREATE TABLE contra (
+  id_Contrato INT PRIMARY KEY NOT NULL,
+  producto_contrato VARCHAR(30) UNIQUE,
+  descripcion VARCHAR(30),
+  serie VARCHAR(30),
+  destino VARCHAR(30),
+  comentarios VARCHAR(30),
+  fecha_surtido DATE,
+  recibio VARCHAR(30),
+  Folio_pedido INT,
+  fecha_pedido VARCHAR(30),
+  SeriePC VARCHAR(50),
+  activo BIT,
+  FOREIGN KEY (SeriePC) REFERENCES Maquinas(SeriePC)
+);
 
 
 --sfadsfdfsa

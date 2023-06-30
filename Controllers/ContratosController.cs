@@ -23,8 +23,8 @@ namespace MV_P1.Controllers
             if (id_Contrato != null)
             {
                 int id = int.Parse(id_Contrato);
-                var maquinas = db.contra.Where(x => x.id_Contrato == id).FirstOrDefault();
-                ViewBag.Maquinas = maquinas;
+                var contrato = db.contra.Where(x => x.id_Contrato == id).FirstOrDefault();
+                ViewBag.contra = contrato;
             }
             ViewBag.Maquinas = db.Maquinas.Where(x => x.Activo == true).ToList();
 
@@ -32,19 +32,24 @@ namespace MV_P1.Controllers
         }
 
 
-        public JsonResult guardarContratos(int? id_Contrato, string producto_contrato, string descripcion, string serie, string destino, string comentarios, DateTime? fecha_surtido, string recibio, int Folio_pedido , string fecha_pedido, string SeriePC)
+        public JsonResult guardarContratos(int? id_Contrato, string producto_contrato, string descripcion, string serie, string destino, string comentarios, DateTime? fecha_surtido, string recibio, int? Folio_pedido , string fecha_pedido, string SeriePC)
         {
-            if (ID_Tienda != null)
+            if (id_Contrato != null)
             {
-                db.sp_editarTiendas(ID_Tienda, DeptoTienda, NoTienda, NombreTienda, DireccionTienda, seriePC);
+                db.sp_editarContrato(id_Contrato, producto_contrato, descripcion, serie, destino, comentarios, fecha_surtido, recibio, Folio_pedido, fecha_pedido, SeriePC);
             }
             else
             {
-                db.sp_agregarTiendas(DeptoTienda, NoTienda, NombreTienda, DireccionTienda, seriePC, true);
+                db.sp_guardar_contrato(producto_contrato, descripcion, serie, destino, comentarios, fecha_surtido, recibio, Folio_pedido, fecha_pedido, SeriePC, true);
 
             }
             return Json("");
         }
 
+        public ActionResult Eliminar(int? id_Contrato)
+        {
+            db.sp_eliminar_contrato(id_Contrato);
+            return RedirectToAction("DatosContratos", "Contratos");
+        }
     }
 }

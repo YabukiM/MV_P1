@@ -134,7 +134,6 @@ BEGIN
 		 seriePC = @seriePC
     WHERE No_emp = @No_emp;
 END
-
 --eliminar
 CREATE PROCEDURE sp_eliminar_empleado (@No_emp INT)
 AS
@@ -142,5 +141,73 @@ BEGIN
 UPDATE empleado
 SET activo = 0
 WHERE No_emp = @No_emp
+END
+
+
+
+--CONTRATOS
+CREATE PROCEDURE sp_guardar_contrato
+(
+   @producto_contrato VARCHAR(30),
+   @descripcion VARCHAR(30),
+   @serie VARCHAR(30),
+   @destino VARCHAR(30),
+   @comentarios VARCHAR(30),
+   @fecha_surtido DATE,
+   @recibio VARCHAR(30),
+   @Folio_pedido INT,
+   @fecha_pedido VARCHAR(30),
+   @SeriePC VARCHAR(50),
+   @activo BIT
+)
+AS 
+BEGIN
+    SET NOCOUNT ON;
+
+    INSERT INTO contra (producto_contrato, descripcion, serie, destino, comentarios, fecha_surtido, recibio, Folio_pedido, fecha_pedido, SeriePC, activo)
+    VALUES (@producto_contrato, @descripcion, @serie, @destino, @comentarios, @fecha_surtido, @recibio, @Folio_pedido, @fecha_pedido, @SeriePC, @activo)
+END
+
+--editar
+CREATE PROCEDURE sp_editarContrato
+(
+   @id_Contrato int,
+   @producto_contrato VARCHAR(30),
+   @descripcion VARCHAR(30),
+   @serie VARCHAR(30),
+   @destino VARCHAR(30),
+   @comentarios VARCHAR(30),
+   @fecha_surtido DATE,
+   @recibio VARCHAR(30),
+   @Folio_pedido INT,
+   @fecha_pedido VARCHAR(30),
+   @SeriePC VARCHAR(50)
+)
+AS 
+BEGIN
+    SET NOCOUNT ON;
+
+    UPDATE contra
+    SET producto_contrato = @producto_contrato,
+        descripcion = @descripcion,
+        serie = @serie,
+        destino = @destino,
+        comentarios = @comentarios,
+        fecha_surtido = @fecha_surtido,
+        recibio = @recibio,
+        Folio_pedido = @Folio_pedido,
+        fecha_pedido = @fecha_pedido,
+        SeriePC = @SeriePC
+    WHERE id_Contrato = @id_Contrato;
+END
+
+--eliminar
+
+CREATE PROCEDURE sp_eliminar_contrato (@id_Contrato INT)
+AS
+BEGIN
+UPDATE contra
+SET activo = 0
+WHERE id_Contrato = @id_Contrato
 END
 

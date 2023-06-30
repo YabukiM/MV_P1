@@ -49,7 +49,7 @@ namespace MV_P1.Controllers
         public ActionResult Eliminar(int? No_emp)
         {
             db.sp_eliminar_empleado(No_emp);
-            return RedirectToAction("guardarempleado", "empleado");
+            return RedirectToAction("DatosEmpleados", "empleado");
         }
 
     }

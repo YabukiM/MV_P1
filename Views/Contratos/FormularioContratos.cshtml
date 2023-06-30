@@ -7,129 +7,119 @@
 
 <script>
 
-    var urlGuardarContrato = '@Url.Action("guardarContratos", "contra")';
+    var urlGuardarContrato = '@Url.Action("guardarContratos", "Contratos")';
 
 </script>
 
 <script src="~/Scripts/guardarContratos.js"></script>
-
 <div class="row">
     <div class="col-md-3">
         <label>Producto</label>
         @if (ViewBag.contra != null)
         {
-            <input type="text" id="producto_contrato" name="producto_contrato" class="form-control" value="@ViewBag.contra.producto_contrato" />
+            <input type="text" id="producto_contrato" name="producto_contrato" class="form-control" value="@ViewBag.contra.producto_contrato" pattern="[a-zA-Z0-9\s]+" required />
         }
         else
         {
-            <input type="text" id="producto_contrato" name="producto_contrato" class="form-control" />
-        }
-    </div>
-
-
-    <div class="col-md-3">
-        <label>descripcion</label>
-        @if (ViewBag.contra != null)
-        {
-            <input type="text" id="descripcion" name="descripcion" class="form-control" value="@ViewBag.contra.descripcion" />
-        }
-        else
-        {
-            <input type="text" id="descripcion" name="descripcion" class="form-control" />
+            <input type="text" id="producto_contrato" name="producto_contrato" class="form-control" pattern="[a-zA-Z0-9\s]+" required />
         }
     </div>
 
     <div class="col-md-3">
-        <label>serie</label>
+        <label>Descripción</label>
         @if (ViewBag.contra != null)
         {
-            <input type="text" id="serie" name="serie" class="form-control" value="@ViewBag.contra.serie" />
+            <input type="text" id="descripcion" name="descripcion" class="form-control" value="@ViewBag.contra.descripcion" pattern="[a-zA-Z0-9\s]+" required />
         }
         else
         {
-            <input type="text" id="serie" name="serie" class="form-control" />
-        }
-    </div>
-
-
-    <div class="col-md-3">
-        <label>destino</label>
-        @if (ViewBag.contra != null)
-        {
-            <input type="text" id="destino" name="destino" class="form-control" value="@ViewBag.contra.destino" />
-        }
-        else
-        {
-            <input type="text" id="destino" name="destino" class="form-control" />
-        }
-    </div>
-
-
-    <div class="col-md-3">
-        <label>comentarios</label>
-        @if (ViewBag.contra != null)
-        {
-            <input type="text" id="comentarios" name="comentarios" class="form-control" value="@ViewBag.contra.comentarios" />
-        }
-        else
-        {
-            <input type="text" id="comentarios" name="comentarios" class="form-control" />
-        }
-    </div>
-
-
-    <div class="col-md-3">
-        <label>fecha_surtido</label>
-        @if (ViewBag.contra != null)
-        {
-            <input type="date" id="fecha_surtido" name="fecha_surtido" class="form-control" value="@((ViewBag.contra.fecha_surtido != null) ? ViewBag.contra.fecha_surtido.ToString("yyyy-MM-dd") : string.Empty)" />
-        }
-        else
-        {
-            <input type="date" id="fecha_surtido" name="fecha_surtido" class="form-control" />
-        }
-    </div>
-
-
-
-    <div class="col-md-3">
-        <label>recibio</label>
-        @if (ViewBag.contra != null)
-        {
-            <input type="text" id="recibio" name="recibio" class="form-control" value="@ViewBag.contra.recibio" />
-        }
-        else
-        {
-            <input type="text" id="recibio" name="recibio" class="form-control" />
-        }
-    </div>
-
-
-    <div class="col-md-3">
-        <label>Folio_pedido</label>
-        @if (ViewBag.contra != null)
-        {
-            <input type="text" id="Folio_pedido" name="Folio_pedido" class="form-control" value="@ViewBag.contra.Folio_pedido" />
-        }
-        else
-        {
-            <input type="text" id="Folio_pedido" name="Folio_pedido" class="form-control" />
+            <input type="text" id="descripcion" name="descripcion" class="form-control" pattern="[a-zA-Z0-9\s]+" required />
         }
     </div>
 
     <div class="col-md-3">
-        <label>fecha_pedido</label>
+        <label>Serie</label>
         @if (ViewBag.contra != null)
         {
-            <input type="text" id="fecha_pedido" name="fecha_pedido" class="form-control" value="@ViewBag.contra.fecha_pedido" />
+            <input type="text" id="serie" name="serie" class="form-control" value="@ViewBag.contra.serie" pattern="[a-zA-Z0-9\s]+" required />
         }
         else
         {
-            <input type="text" id="fecha_pedido" name="fecha_pedido" class="form-control" />
+            <input type="text" id="serie" name="serie" class="form-control" pattern="[a-zA-Z0-9\s]+" required />
         }
     </div>
 
+    <div class="col-md-3">
+        <label>Destino</label>
+        @if (ViewBag.contra != null)
+        {
+            <input type="text" id="destino" name="destino" class="form-control" value="@ViewBag.contra.destino" pattern="[a-zA-Z0-9\s]+" required />
+        }
+        else
+        {
+            <input type="text" id="destino" name="destino" class="form-control" pattern="[a-zA-Z0-9\s]+" required />
+        }
+    </div>
 
+    <div class="col-md-3">
+        <label>Comentarios</label>
+        @if (ViewBag.contra != null)
+        {
+            <input type="text" id="comentarios" name="comentarios" class="form-control" value="@ViewBag.contra.comentarios" pattern="[a-zA-Z0-9\s]+" required />
+        }
+        else
+        {
+            <input type="text" id="comentarios" name="comentarios" class="form-control" pattern="[a-zA-Z0-9\s]+" required />
+        }
+    </div>
+
+    <div class="col-md-3">
+        <label>Fecha de Surtido</label>
+        @if (ViewBag.contra != null)
+        {
+            <input type="date" id="fecha_surtido" name="fecha_surtido" class="form-control" value="@((ViewBag.contra.fecha_surtido != null) ? ViewBag.contra.fecha_surtido.ToString("yyyy-MM-dd") : string.Empty)" required />
+        }
+        else
+        {
+            <input type="date" id="fecha_surtido" name="fecha_surtido" class="form-control" required />
+        }
+    </div>
+
+    <div class="col-md-3">
+        <label>Recibió</label>
+        @if (ViewBag.contra != null)
+        {
+            <input type="text" id="recibio" name="recibio" class="form-control" value="@ViewBag.contra.recibio" pattern="[a-zA-Z0-9\s]+" required />
+        }
+        else
+        {
+            <input type="text" id="recibio" name="recibio" class="form-control" pattern="[a-zA-Z0-9\s]+" required />
+        }
+    </div>
+
+    <div class="col-md-3">
+        <label>Folio de Pedido</label>
+        @if (ViewBag.contra != null)
+        {
+            <input type="text" id="Folio_pedido" name="Folio_pedido" class="form-control" value="@ViewBag.contra.Folio_pedido" pattern="[a-zA-Z0-9\s]+" required />
+        }
+        else
+        {
+            <input type="text" id="Folio_pedido" name="Folio_pedido" class="form-control" pattern="[a-zA-Z0-9\s]+" required />
+        }
+    </div>
+
+    <div class="col-md-3">
+        <label>Fecha de Pedido</label>
+        @if (ViewBag.contra != null)
+        {
+            <input type="text" id="fecha_pedido" name="fecha_pedido" class="form-control" value="@ViewBag.contra.fecha_pedido" pattern="[a-zA-Z0-9\s]+" required />
+        }
+        else
+        {
+            <input type="text" id="fecha_pedido" name="fecha_pedido" class="form-control" pattern="[a-zA-Z0-9\s]+" required />
+        }
+    </div>
 
     <label>Serie PC</label>
     <select class="form-select mb-md-3" id="SeriePC" name="SeriePC">
@@ -158,8 +148,6 @@
 
         }
     </select>
-
-
 </div>
 
 <br />

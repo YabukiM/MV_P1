@@ -248,5 +248,112 @@ namespace MV_P1.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_eliminar_tiendas", iD_TiendaParameter);
         }
+    
+        public virtual int sp_editarContrato(Nullable<int> id_Contrato, string producto_contrato, string descripcion, string serie, string destino, string comentarios, Nullable<System.DateTime> fecha_surtido, string recibio, Nullable<int> folio_pedido, string fecha_pedido, string seriePC)
+        {
+            var id_ContratoParameter = id_Contrato.HasValue ?
+                new ObjectParameter("id_Contrato", id_Contrato) :
+                new ObjectParameter("id_Contrato", typeof(int));
+    
+            var producto_contratoParameter = producto_contrato != null ?
+                new ObjectParameter("producto_contrato", producto_contrato) :
+                new ObjectParameter("producto_contrato", typeof(string));
+    
+            var descripcionParameter = descripcion != null ?
+                new ObjectParameter("descripcion", descripcion) :
+                new ObjectParameter("descripcion", typeof(string));
+    
+            var serieParameter = serie != null ?
+                new ObjectParameter("serie", serie) :
+                new ObjectParameter("serie", typeof(string));
+    
+            var destinoParameter = destino != null ?
+                new ObjectParameter("destino", destino) :
+                new ObjectParameter("destino", typeof(string));
+    
+            var comentariosParameter = comentarios != null ?
+                new ObjectParameter("comentarios", comentarios) :
+                new ObjectParameter("comentarios", typeof(string));
+    
+            var fecha_surtidoParameter = fecha_surtido.HasValue ?
+                new ObjectParameter("fecha_surtido", fecha_surtido) :
+                new ObjectParameter("fecha_surtido", typeof(System.DateTime));
+    
+            var recibioParameter = recibio != null ?
+                new ObjectParameter("recibio", recibio) :
+                new ObjectParameter("recibio", typeof(string));
+    
+            var folio_pedidoParameter = folio_pedido.HasValue ?
+                new ObjectParameter("Folio_pedido", folio_pedido) :
+                new ObjectParameter("Folio_pedido", typeof(int));
+    
+            var fecha_pedidoParameter = fecha_pedido != null ?
+                new ObjectParameter("fecha_pedido", fecha_pedido) :
+                new ObjectParameter("fecha_pedido", typeof(string));
+    
+            var seriePCParameter = seriePC != null ?
+                new ObjectParameter("SeriePC", seriePC) :
+                new ObjectParameter("SeriePC", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_editarContrato", id_ContratoParameter, producto_contratoParameter, descripcionParameter, serieParameter, destinoParameter, comentariosParameter, fecha_surtidoParameter, recibioParameter, folio_pedidoParameter, fecha_pedidoParameter, seriePCParameter);
+        }
+    
+        public virtual int sp_guardar_contrato(string producto_contrato, string descripcion, string serie, string destino, string comentarios, Nullable<System.DateTime> fecha_surtido, string recibio, Nullable<int> folio_pedido, string fecha_pedido, string seriePC, Nullable<bool> activo)
+        {
+            var producto_contratoParameter = producto_contrato != null ?
+                new ObjectParameter("producto_contrato", producto_contrato) :
+                new ObjectParameter("producto_contrato", typeof(string));
+    
+            var descripcionParameter = descripcion != null ?
+                new ObjectParameter("descripcion", descripcion) :
+                new ObjectParameter("descripcion", typeof(string));
+    
+            var serieParameter = serie != null ?
+                new ObjectParameter("serie", serie) :
+                new ObjectParameter("serie", typeof(string));
+    
+            var destinoParameter = destino != null ?
+                new ObjectParameter("destino", destino) :
+                new ObjectParameter("destino", typeof(string));
+    
+            var comentariosParameter = comentarios != null ?
+                new ObjectParameter("comentarios", comentarios) :
+                new ObjectParameter("comentarios", typeof(string));
+    
+            var fecha_surtidoParameter = fecha_surtido.HasValue ?
+                new ObjectParameter("fecha_surtido", fecha_surtido) :
+                new ObjectParameter("fecha_surtido", typeof(System.DateTime));
+    
+            var recibioParameter = recibio != null ?
+                new ObjectParameter("recibio", recibio) :
+                new ObjectParameter("recibio", typeof(string));
+    
+            var folio_pedidoParameter = folio_pedido.HasValue ?
+                new ObjectParameter("Folio_pedido", folio_pedido) :
+                new ObjectParameter("Folio_pedido", typeof(int));
+    
+            var fecha_pedidoParameter = fecha_pedido != null ?
+                new ObjectParameter("fecha_pedido", fecha_pedido) :
+                new ObjectParameter("fecha_pedido", typeof(string));
+    
+            var seriePCParameter = seriePC != null ?
+                new ObjectParameter("SeriePC", seriePC) :
+                new ObjectParameter("SeriePC", typeof(string));
+    
+            var activoParameter = activo.HasValue ?
+                new ObjectParameter("activo", activo) :
+                new ObjectParameter("activo", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_guardar_contrato", producto_contratoParameter, descripcionParameter, serieParameter, destinoParameter, comentariosParameter, fecha_surtidoParameter, recibioParameter, folio_pedidoParameter, fecha_pedidoParameter, seriePCParameter, activoParameter);
+        }
+    
+        public virtual int sp_eliminar_contrato(Nullable<int> id_Contrato)
+        {
+            var id_ContratoParameter = id_Contrato.HasValue ?
+                new ObjectParameter("id_Contrato", id_Contrato) :
+                new ObjectParameter("id_Contrato", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_eliminar_contrato", id_ContratoParameter);
+        }
     }
 }
