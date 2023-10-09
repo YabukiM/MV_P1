@@ -17,7 +17,7 @@
         }
         else
         {
-            <input type="text" id="Contratos" name="Contratos" class="form-control" />
+            <input type="text" id="Contratos" name="Contratos" class="form-control" pattern="^[a-zA-Z0-9\s]+$" required oninvalid="setCustomValidity('El campo Contratos no acepta caracteres especiales o no tiene el formato correcto.')" oninput="setCustomValidity('')">
         }
     </div>
     <div class="col-md-3">
