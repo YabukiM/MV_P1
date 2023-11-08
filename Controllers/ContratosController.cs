@@ -9,11 +9,11 @@ namespace MV_P1.Controllers
     public class ContratosController : Controller
     {
 
-        InventoryEntities3 db = new InventoryEntities3();
+        InventoryEntities4 db = new InventoryEntities4();
 
         public ActionResult DatosContratos()
         {
-            var Datos = db.contra.Where(x => x.activo == true).ToList();
+            var Datos = db.contras.Where(x => x.activo == true).ToList();
             return View(Datos);
         }
 
@@ -23,7 +23,7 @@ namespace MV_P1.Controllers
             if (id_Contrato != null)
             {
                 int id = int.Parse(id_Contrato);
-                var contrato = db.contra.Where(x => x.id_Contrato == id).FirstOrDefault();
+                var contrato = db.contras.Where(x => x.id_Contrato == id).FirstOrDefault();
                 ViewBag.contra = contrato;
             }
             ViewBag.Maquinas = db.Maquinas.Where(x => x.Activo == true).ToList();

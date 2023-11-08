@@ -10,11 +10,11 @@ namespace MV_P1.Controllers
     public class EmpleadoController : Controller
     {
         
-        InventoryEntities3 db = new InventoryEntities3();
+        InventoryEntities4 db = new InventoryEntities4();
 
         public ActionResult DatosEmpleados()
         {
-            var Datos = db.empleado.Where(x => x.Activo == true).ToList();
+            var Datos = db.empleadoes.Where(x => x.Activo == true).ToList();
             return View(Datos);
         }
 
@@ -25,7 +25,7 @@ namespace MV_P1.Controllers
             if (No_emp != null)
             {
                 int id = int.Parse(No_emp);
-                var empleado = db.empleado.Where(x => x.No_emp == id).FirstOrDefault();
+                var empleado = db.empleadoes.Where(x => x.No_emp == id).FirstOrDefault();
                 ViewBag.empleado = empleado;
             }
             ViewBag.Maquinas = db.Maquinas.Where(x => x.Activo == true).ToList();

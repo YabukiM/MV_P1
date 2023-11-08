@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="InventoryModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="InventoryModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="contra">
           <Key>
             <PropertyRef Name="id_Contrato" />
@@ -60,7 +60,7 @@
           <Property Name="DireccionTienda" Type="varchar" MaxLength="100" />
           <Property Name="SeriePC" Type="varchar" MaxLength="50" />
         </EntityType>
-        <Association Name="FK__contra__SeriePC__5535A963">
+        <Association Name="FK__contra__SeriePC__534D60F1">
           <End Role="Maquinas" Type="Self.Maquinas" Multiplicity="0..1" />
           <End Role="contra" Type="Self.contra" Multiplicity="*" />
           <ReferentialConstraint>
@@ -72,7 +72,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__empleado__serieP__29572725">
+        <Association Name="FK__empleado__serieP__4F7CD00D">
           <End Role="Maquinas" Type="Self.Maquinas" Multiplicity="0..1" />
           <End Role="empleado" Type="Self.empleado" Multiplicity="*" />
           <ReferentialConstraint>
@@ -84,7 +84,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Tiendas__SeriePC__267ABA7A">
+        <Association Name="FK__Tiendas__SeriePC__4CA06362">
           <End Role="Maquinas" Type="Self.Maquinas" Multiplicity="0..1" />
           <End Role="Tiendas" Type="Self.Tiendas" Multiplicity="*" />
           <ReferentialConstraint>
@@ -191,23 +191,42 @@
           <EntitySet Name="empleado" EntityType="Self.empleado" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Maquinas" EntityType="Self.Maquinas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tiendas" EntityType="Self.Tiendas" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__contra__SeriePC__5535A963" Association="Self.FK__contra__SeriePC__5535A963">
+          <AssociationSet Name="FK__contra__SeriePC__534D60F1" Association="Self.FK__contra__SeriePC__534D60F1">
             <End Role="Maquinas" EntitySet="Maquinas" />
             <End Role="contra" EntitySet="contra" />
           </AssociationSet>
-          <AssociationSet Name="FK__empleado__serieP__29572725" Association="Self.FK__empleado__serieP__29572725">
+          <AssociationSet Name="FK__empleado__serieP__4F7CD00D" Association="Self.FK__empleado__serieP__4F7CD00D">
             <End Role="Maquinas" EntitySet="Maquinas" />
             <End Role="empleado" EntitySet="empleado" />
           </AssociationSet>
-          <AssociationSet Name="FK__Tiendas__SeriePC__267ABA7A" Association="Self.FK__Tiendas__SeriePC__267ABA7A">
+          <AssociationSet Name="FK__Tiendas__SeriePC__4CA06362" Association="Self.FK__Tiendas__SeriePC__4CA06362">
             <End Role="Maquinas" EntitySet="Maquinas" />
             <End Role="Tiendas" EntitySet="Tiendas" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="InventoryModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="contra">
+          <Key>
+            <PropertyRef Name="id_Contrato" />
+          </Key>
+          <Property Name="id_Contrato" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="producto_contrato" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="descripcion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="serie" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="destino" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="comentarios" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_surtido" Type="DateTime" Precision="0" />
+          <Property Name="recibio" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Folio_pedido" Type="Int32" />
+          <Property Name="fecha_pedido" Type="DateTime" Precision="0" />
+          <Property Name="SeriePC" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="activo" Type="Boolean" />
+          <NavigationProperty Name="Maquina" Relationship="Self.FK__contra__SeriePC__534D60F1" FromRole="contra" ToRole="Maquinas" />
+        </EntityType>
         <EntityType Name="empleado">
           <Key>
             <PropertyRef Name="No_emp" />
@@ -217,9 +236,9 @@
           <Property Name="seriePC" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="puesto" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="Activo" Type="Boolean" />
-          <NavigationProperty Name="Maquinas" Relationship="Self.FK__empleado__serieP__29572725" FromRole="empleado" ToRole="Maquinas" />
+          <NavigationProperty Name="Maquina" Relationship="Self.FK__empleado__serieP__4F7CD00D" FromRole="empleado" ToRole="Maquinas" />
         </EntityType>
-        <EntityType Name="Maquinas">
+        <EntityType Name="Maquina">
           <Key>
             <PropertyRef Name="SeriePC" />
           </Key>
@@ -234,11 +253,11 @@
           <Property Name="Activo" Type="Boolean" />
           <Property Name="NombreUsuarioPuesto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="NoCartaCustodia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="empleado" Relationship="Self.FK__empleado__serieP__29572725" FromRole="Maquinas" ToRole="empleado" />
-          <NavigationProperty Name="Tiendas" Relationship="Self.FK__Tiendas__SeriePC__267ABA7A" FromRole="Maquinas" ToRole="Tiendas" />
-          <NavigationProperty Name="contra" Relationship="InventoryModel.FK__contra__SeriePC__5535A963" FromRole="Maquinas" ToRole="contra" />
+          <NavigationProperty Name="contras" Relationship="Self.FK__contra__SeriePC__534D60F1" FromRole="Maquinas" ToRole="contra" />
+          <NavigationProperty Name="empleadoes" Relationship="Self.FK__empleado__serieP__4F7CD00D" FromRole="Maquinas" ToRole="empleado" />
+          <NavigationProperty Name="Tiendas" Relationship="Self.FK__Tiendas__SeriePC__4CA06362" FromRole="Maquinas" ToRole="Tiendas" />
         </EntityType>
-        <EntityType Name="Tiendas">
+        <EntityType Name="Tienda">
           <Key>
             <PropertyRef Name="ID_Tienda" />
           </Key>
@@ -249,10 +268,22 @@
           <Property Name="Activo" Type="Boolean" />
           <Property Name="DireccionTienda" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="SeriePC" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Maquinas" Relationship="Self.FK__Tiendas__SeriePC__267ABA7A" FromRole="Tiendas" ToRole="Maquinas" />
+          <NavigationProperty Name="Maquina" Relationship="Self.FK__Tiendas__SeriePC__4CA06362" FromRole="Tiendas" ToRole="Maquinas" />
         </EntityType>
-        <Association Name="FK__empleado__serieP__29572725">
-          <End Role="Maquinas" Type="Self.Maquinas" Multiplicity="0..1" />
+        <Association Name="FK__contra__SeriePC__534D60F1">
+          <End Role="Maquinas" Type="Self.Maquina" Multiplicity="0..1" />
+          <End Role="contra" Type="Self.contra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Maquinas">
+              <PropertyRef Name="SeriePC" />
+            </Principal>
+            <Dependent Role="contra">
+              <PropertyRef Name="SeriePC" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__empleado__serieP__4F7CD00D">
+          <End Role="Maquinas" Type="Self.Maquina" Multiplicity="0..1" />
           <End Role="empleado" Type="Self.empleado" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Maquinas">
@@ -263,9 +294,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Tiendas__SeriePC__267ABA7A">
-          <End Role="Maquinas" Type="Self.Maquinas" Multiplicity="0..1" />
-          <End Role="Tiendas" Type="Self.Tiendas" Multiplicity="*" />
+        <Association Name="FK__Tiendas__SeriePC__4CA06362">
+          <End Role="Maquinas" Type="Self.Maquina" Multiplicity="0..1" />
+          <End Role="Tiendas" Type="Self.Tienda" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Maquinas">
               <PropertyRef Name="SeriePC" />
@@ -275,15 +306,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="InventoryEntities3" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="empleado" EntityType="Self.empleado" />
-          <EntitySet Name="Maquinas" EntityType="Self.Maquinas" />
-          <EntitySet Name="Tiendas" EntityType="Self.Tiendas" />
-          <AssociationSet Name="FK__empleado__serieP__29572725" Association="Self.FK__empleado__serieP__29572725">
+        <EntityContainer Name="InventoryEntities4" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="contras" EntityType="Self.contra" />
+          <EntitySet Name="empleadoes" EntityType="Self.empleado" />
+          <EntitySet Name="Maquinas" EntityType="Self.Maquina" />
+          <EntitySet Name="Tiendas" EntityType="Self.Tienda" />
+          <AssociationSet Name="FK__contra__SeriePC__534D60F1" Association="Self.FK__contra__SeriePC__534D60F1">
             <End Role="Maquinas" EntitySet="Maquinas" />
-            <End Role="empleado" EntitySet="empleado" />
+            <End Role="contra" EntitySet="contras" />
           </AssociationSet>
-          <AssociationSet Name="FK__Tiendas__SeriePC__267ABA7A" Association="Self.FK__Tiendas__SeriePC__267ABA7A">
+          <AssociationSet Name="FK__empleado__serieP__4F7CD00D" Association="Self.FK__empleado__serieP__4F7CD00D">
+            <End Role="Maquinas" EntitySet="Maquinas" />
+            <End Role="empleado" EntitySet="empleadoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tiendas__SeriePC__4CA06362" Association="Self.FK__Tiendas__SeriePC__4CA06362">
             <End Role="Maquinas" EntitySet="Maquinas" />
             <End Role="Tiendas" EntitySet="Tiendas" />
           </AssociationSet>
@@ -313,6 +349,19 @@
             <Parameter Name="SeriePC" Mode="In" Type="String" />
             <Parameter Name="activo" Mode="In" Type="Boolean" />
           </FunctionImport>
+          <FunctionImport Name="sp_editarContrato">
+            <Parameter Name="id_Contrato" Mode="In" Type="Int32" />
+            <Parameter Name="producto_contrato" Mode="In" Type="String" />
+            <Parameter Name="descripcion" Mode="In" Type="String" />
+            <Parameter Name="serie" Mode="In" Type="String" />
+            <Parameter Name="destino" Mode="In" Type="String" />
+            <Parameter Name="comentarios" Mode="In" Type="String" />
+            <Parameter Name="fecha_surtido" Mode="In" Type="DateTime" />
+            <Parameter Name="recibio" Mode="In" Type="String" />
+            <Parameter Name="Folio_pedido" Mode="In" Type="Int32" />
+            <Parameter Name="fecha_pedido" Mode="In" Type="DateTime" />
+            <Parameter Name="SeriePC" Mode="In" Type="String" />
+          </FunctionImport>
           <FunctionImport Name="sp_editarEmpleado">
             <Parameter Name="No_emp" Mode="In" Type="Int32" />
             <Parameter Name="nombre" Mode="In" Type="String" />
@@ -339,35 +388,17 @@
             <Parameter Name="DireccionTienda" Mode="In" Type="String" />
             <Parameter Name="SeriePC" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="sp_eliminar_contrato">
+            <Parameter Name="id_Contrato" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="sp_eliminar_empleado">
-          <Parameter Name="No_emp" Mode="In" Type="Int32" />
+            <Parameter Name="No_emp" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_eliminar_maquinas">
-          <Parameter Name="Conteo" Mode="In" Type="Int32" />
+            <Parameter Name="Conteo" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_eliminar_tiendas">
-          <Parameter Name="ID_Tienda" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_eliminar_contrato">
-          <Parameter Name="id_Contrato" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <EntitySet Name="contra" EntityType="InventoryModel.contra" />
-          <AssociationSet Name="FK__contra__SeriePC__5535A963" Association="InventoryModel.FK__contra__SeriePC__5535A963">
-            <End Role="Maquinas" EntitySet="Maquinas" />
-            <End Role="contra" EntitySet="contra" />
-          </AssociationSet>
-          <FunctionImport Name="sp_editarContrato">
-            <Parameter Name="id_Contrato" Mode="In" Type="Int32" />
-            <Parameter Name="producto_contrato" Mode="In" Type="String" />
-            <Parameter Name="descripcion" Mode="In" Type="String" />
-            <Parameter Name="serie" Mode="In" Type="String" />
-            <Parameter Name="destino" Mode="In" Type="String" />
-            <Parameter Name="comentarios" Mode="In" Type="String" />
-            <Parameter Name="fecha_surtido" Mode="In" Type="DateTime" />
-            <Parameter Name="recibio" Mode="In" Type="String" />
-            <Parameter Name="Folio_pedido" Mode="In" Type="Int32" />
-            <Parameter Name="fecha_pedido" Mode="In" Type="DateTime" />
-            <Parameter Name="SeriePC" Mode="In" Type="String" />
+            <Parameter Name="ID_Tienda" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_guardar_contrato">
             <Parameter Name="producto_contrato" Mode="In" Type="String" />
@@ -383,43 +414,31 @@
             <Parameter Name="activo" Mode="In" Type="Boolean" />
           </FunctionImport>
         </EntityContainer>
-        <EntityType Name="contra">
-          <Key>
-            <PropertyRef Name="id_Contrato" />
-          </Key>
-          <Property Name="id_Contrato" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="producto_contrato" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="descripcion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="serie" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="destino" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="comentarios" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="fecha_surtido" Type="DateTime" Precision="0" />
-          <Property Name="recibio" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="Folio_pedido" Type="Int32" />
-          <Property Name="fecha_pedido" Type="DateTime" Precision="0" />
-          <Property Name="SeriePC" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="activo" Type="Boolean" />
-          <NavigationProperty Name="Maquinas" Relationship="InventoryModel.FK__contra__SeriePC__5535A963" FromRole="contra" ToRole="Maquinas" />
-        </EntityType>
-        <Association Name="FK__contra__SeriePC__5535A963">
-          <End Type="InventoryModel.Maquinas" Role="Maquinas" Multiplicity="0..1" />
-          <End Type="InventoryModel.contra" Role="contra" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Maquinas">
-              <PropertyRef Name="SeriePC" />
-            </Principal>
-            <Dependent Role="contra">
-              <PropertyRef Name="SeriePC" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="InventoryModelStoreContainer" CdmEntityContainer="InventoryEntities3">
-          <EntitySetMapping Name="empleado">
+        <EntityContainerMapping StorageEntityContainer="InventoryModelStoreContainer" CdmEntityContainer="InventoryEntities4">
+          <EntitySetMapping Name="contras">
+            <EntityTypeMapping TypeName="InventoryModel.contra">
+              <MappingFragment StoreEntitySet="contra">
+                <ScalarProperty Name="id_Contrato" ColumnName="id_Contrato" />
+                <ScalarProperty Name="producto_contrato" ColumnName="producto_contrato" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="serie" ColumnName="serie" />
+                <ScalarProperty Name="destino" ColumnName="destino" />
+                <ScalarProperty Name="comentarios" ColumnName="comentarios" />
+                <ScalarProperty Name="fecha_surtido" ColumnName="fecha_surtido" />
+                <ScalarProperty Name="recibio" ColumnName="recibio" />
+                <ScalarProperty Name="Folio_pedido" ColumnName="Folio_pedido" />
+                <ScalarProperty Name="fecha_pedido" ColumnName="fecha_pedido" />
+                <ScalarProperty Name="SeriePC" ColumnName="SeriePC" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="empleadoes">
             <EntityTypeMapping TypeName="InventoryModel.empleado">
               <MappingFragment StoreEntitySet="empleado">
                 <ScalarProperty Name="No_emp" ColumnName="No_emp" />
@@ -431,7 +450,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Maquinas">
-            <EntityTypeMapping TypeName="InventoryModel.Maquinas">
+            <EntityTypeMapping TypeName="InventoryModel.Maquina">
               <MappingFragment StoreEntitySet="Maquinas">
                 <ScalarProperty Name="Conteo" ColumnName="Conteo" />
                 <ScalarProperty Name="Contratos" ColumnName="Contratos" />
@@ -448,7 +467,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Tiendas">
-            <EntityTypeMapping TypeName="InventoryModel.Tiendas">
+            <EntityTypeMapping TypeName="InventoryModel.Tienda">
               <MappingFragment StoreEntitySet="Tiendas">
                 <ScalarProperty Name="ID_Tienda" ColumnName="ID_Tienda" />
                 <ScalarProperty Name="DeptoTienda" ColumnName="DeptoTienda" />
@@ -463,32 +482,14 @@
           <FunctionImportMapping FunctionImportName="sp_agregar_emplado" FunctionName="InventoryModel.Store.sp_agregar_emplado" />
           <FunctionImportMapping FunctionImportName="sp_agregarMaquinas" FunctionName="InventoryModel.Store.sp_agregarMaquinas" />
           <FunctionImportMapping FunctionImportName="sp_agregarTiendas" FunctionName="InventoryModel.Store.sp_agregarTiendas" />
+          <FunctionImportMapping FunctionImportName="sp_editarContrato" FunctionName="InventoryModel.Store.sp_editarContrato" />
           <FunctionImportMapping FunctionImportName="sp_editarEmpleado" FunctionName="InventoryModel.Store.sp_editarEmpleado" />
           <FunctionImportMapping FunctionImportName="sp_editarMaquinas" FunctionName="InventoryModel.Store.sp_editarMaquinas" />
           <FunctionImportMapping FunctionImportName="sp_editarTiendas" FunctionName="InventoryModel.Store.sp_editarTiendas" />
+          <FunctionImportMapping FunctionImportName="sp_eliminar_contrato" FunctionName="InventoryModel.Store.sp_eliminar_contrato" />
           <FunctionImportMapping FunctionImportName="sp_eliminar_empleado" FunctionName="InventoryModel.Store.sp_eliminar_empleado" />
           <FunctionImportMapping FunctionImportName="sp_eliminar_maquinas" FunctionName="InventoryModel.Store.sp_eliminar_maquinas" />
           <FunctionImportMapping FunctionImportName="sp_eliminar_tiendas" FunctionName="InventoryModel.Store.sp_eliminar_tiendas" />
-          <FunctionImportMapping FunctionImportName="sp_eliminar_contrato" FunctionName="InventoryModel.Store.sp_eliminar_contrato" />
-          <EntitySetMapping Name="contra">
-            <EntityTypeMapping TypeName="InventoryModel.contra">
-              <MappingFragment StoreEntitySet="contra">
-                <ScalarProperty Name="activo" ColumnName="activo" />
-                <ScalarProperty Name="SeriePC" ColumnName="SeriePC" />
-                <ScalarProperty Name="fecha_pedido" ColumnName="fecha_pedido" />
-                <ScalarProperty Name="Folio_pedido" ColumnName="Folio_pedido" />
-                <ScalarProperty Name="recibio" ColumnName="recibio" />
-                <ScalarProperty Name="fecha_surtido" ColumnName="fecha_surtido" />
-                <ScalarProperty Name="comentarios" ColumnName="comentarios" />
-                <ScalarProperty Name="destino" ColumnName="destino" />
-                <ScalarProperty Name="serie" ColumnName="serie" />
-                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
-                <ScalarProperty Name="producto_contrato" ColumnName="producto_contrato" />
-                <ScalarProperty Name="id_Contrato" ColumnName="id_Contrato" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="sp_editarContrato" FunctionName="InventoryModel.Store.sp_editarContrato" />
           <FunctionImportMapping FunctionImportName="sp_guardar_contrato" FunctionName="InventoryModel.Store.sp_guardar_contrato" />
         </EntityContainerMapping>
       </Mapping>
@@ -504,10 +505,10 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
-        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->
